@@ -2,5 +2,5 @@ influxdb_client == 1.41.0
 pandas == 2.2.1
 duckdb == 0.10.1
 plotly == 5.20.0
-yaml
-datetime
+streamlit-authenticator == 0.3.2
+streamlit == 1.32.0
