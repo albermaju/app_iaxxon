@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit_authenticator as stauth
 import influxdb_client 
 import pandas as pd
 from pandas import DataFrame, Series, Timestamp
