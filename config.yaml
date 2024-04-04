@@ -1,0 +1,17 @@
+credentials:
+  usernames:
+    jsmith:
+      email: alberto@iaxxon.com
+      name: Alberto Maraña
+      password: abc # To be replaced with hashed password
+    rbriggs:
+      email: juan@iaxxon.com
+      name: Juan Castro
+      password: def # To be replaced with hashed password
+cookie:
+  expiry_days: 30
+  key: random_signature_key # Must be string
+  name: random_cookie_name
+preauthorized:
+  emails:
+  - melsby@gmail.com
