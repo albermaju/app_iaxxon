@@ -172,11 +172,11 @@ with col1:
 
 with col2:
     st.metric(label="Temperatura Intercambiador (ºC)", value=df.TINT.iloc[-1])
-    st.toggle('Bomba' , estado_bomba, disabled = True)
+    st.toggle('Bomba' , estado_bomba)
 
 with col3:
     st.metric(label="Temperatura Depósito (ºC)", value=df.TDAC.iloc[-1])
-    st.toggle('Ventilador', estado_ventilador, disabled = True)
+    st.toggle('Ventilador', estado_ventilador)
 
 
 st.title("Gráficas")
