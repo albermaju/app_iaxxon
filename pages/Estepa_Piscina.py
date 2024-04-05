@@ -164,6 +164,24 @@ df.rename(columns = {'_time':'Tiempo'}, inplace = True)
 
 st.title("Estado Actual")
 
+# Definir el color de activación personalizado (en este caso, verde)
+css = """
+<style>
+/* Cambia el color de activación del control de alternancia */
+.stCheckbox span[role="checkbox"]:checked:before {
+    border-color: #4CAF50;  /* Color verde */
+}
+</style>
+"""
+
+# Aplicar el CSS personalizado
+st.markdown(css, unsafe_allow_html=True)
+
+# Mostrar el control de alternancia de la bomba con el color de activación personalizado
+estado_bomba = st.checkbox('Bomba', value=estado_bomba)
+
+# Mostrar el estado de la bomba utilizando st.write
+st.write('Estado de la bomba:', 'Encendida' if estado_bomba else 'Apagada')
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -172,7 +190,10 @@ with col1:
 
 with col2:
     st.metric(label="Temperatura Intercambiador (ºC)", value=df.TINT.iloc[-1])
-    st.checkbox('Bomba', value=estado_bomba, key='bomba_toggle')
+    # Mostrar el control de alternancia de la bomba con el color de activación personalizado
+    estado_bomba = st.checkbox('Bomba', value=estado_bomba)
+    # Mostrar el estado de la bomba utilizando st.write
+    st.write('Estado de la bomba:', 'Encendida' if estado_bomba else 'Apagada')
     st.toggle('Bomba' , estado_bomba)
 
 with col3:
