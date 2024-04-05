@@ -187,9 +187,7 @@ with col2:
     st.metric(label="Temperatura Intercambiador (ºC)", value=df.TINT.iloc[-1])
     # Mostrar el control de alternancia de la bomba con el color de activación personalizado
     estado_bomba = st.checkbox('Bomba', value=estado_bomba)
-    # Mostrar el estado de la bomba utilizando st.write
-    st.write('Estado de la bomba:', 'Encendida' if estado_bomba else 'Apagada')
-    ##st.toggle('Bomba' , estado_bomba)
+    st.toggle('Bomba' , estado_bomba)
 
 with col3:
     st.metric(label="Temperatura Depósito (ºC)", value=df.TDAC.iloc[-1])
