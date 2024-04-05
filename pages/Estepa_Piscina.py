@@ -10,7 +10,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from streamlit_extras.altex import _chart 
-import streamlit_toggle_switch 
+import streamlit_toggle as tog
 
 #######################################
 # CONFIGURACIÓN DE PÁGINA
@@ -175,7 +175,7 @@ with col1:
 with col2:
     st.metric(label="Temperatura Intercambiador (ºC)", value=df.TINT.iloc[-1])
     st.write("## Bomba")
-    st_toggle_switch(
+    tog.st_toggle_switch(
         label="Bomba",
         key="switch_1",
         default_value= estado_ventilador,
