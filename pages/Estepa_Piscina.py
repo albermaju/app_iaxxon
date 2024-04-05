@@ -172,6 +172,7 @@ with col1:
 
 with col2:
     st.metric(label="Temperatura Intercambiador (ºC)", value=df.TINT.iloc[-1])
+    st.checkbox('Bomba', value=estado_bomba, key='bomba_toggle')
     st.toggle('Bomba' , estado_bomba)
 
 with col3:
