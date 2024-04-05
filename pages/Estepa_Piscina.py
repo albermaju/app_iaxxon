@@ -180,7 +180,7 @@ with col2:
         default_value= estado_bomba,
         label_after=False,
         inactive_color="#D3D3D3",  # optional
-        active_color="#008f39",  # optional
+        active_color="#D3D3D3",  # optional
         track_color="#008f39",  # optional
     )
 
@@ -192,7 +192,7 @@ with col3:
         default_value= estado_ventilador,
         label_after=False,
         inactive_color="#D3D3D3",  # optional
-        active_color="#008f39",  # optional
+        active_color="#D3D3D3",  # optional
         track_color="#008f39",  # optional
     )
     
