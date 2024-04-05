@@ -173,7 +173,7 @@ with col1:
     st.metric(label="Energía Producida", value=f"{df2._value.iloc[-1]} kWh")
 
 with col2:
-    st.metric(label="Temperatura Intercambiador", value=f"{df.TINT.iloc[-1]} f"{df.TCAP.iloc[-1]} °C")
+    st.metric(label="Temperatura Intercambiador", value=f"{df.TINT.iloc[-1]} °C")
     tog.st_toggle_switch(
         label="Bomba",
         key="switch_1",
@@ -185,7 +185,7 @@ with col2:
     )
 
 with col3:
-    st.metric(label="Temperatura Depósito", value=f"{df.TDAC.iloc[-1]} f"{df.TCAP.iloc[-1]} °C")
+    st.metric(label="Temperatura Depósito", value=f"{df.TDAC.iloc[-1]} °C")
     tog.st_toggle_switch(
         label="Ventilador",
         key="switch_2",
