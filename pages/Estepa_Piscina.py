@@ -174,7 +174,6 @@ with col1:
 
 with col2:
     st.metric(label="Temperatura Intercambiador (ºC)", value=df.TINT.iloc[-1])
-    st.write("## Bomba")
     tog.st_toggle_switch(
         label="Bomba",
         key="switch_1",
@@ -184,7 +183,6 @@ with col2:
         active_color="#11567f",  # optional
         track_color="#29B5E8",  # optional
     )
-    st.toggle('Bomba' , estado_bomba, active_color="#11567f")
 
 with col3:
     st.metric(label="Temperatura Depósito (ºC)", value=df.TDAC.iloc[-1])
