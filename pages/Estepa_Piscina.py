@@ -141,6 +141,19 @@ estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie
 # Lista de opciones para el desplegable
 options = ['1 día', '2 días', '7 días', '1 mes']
 
+# Desplegable para seleccionar el período de tiempo
+time_period = st.selectbox('Selecciona el período de tiempo:', options)
+df = get_data(time_period)
+df2 = get_kwh(time_period)
+
+to_drop = ['result', 'table', '_measurement', 'tag1', 'tag2']
+df.drop(to_drop, inplace=True, axis=1)
+df['TCAP']=df['TCAP'].round(2)
+df['TDAC']=df['TDAC'].round(2)
+df['TINT']=df['TINT'].round(2)
+df2['_value']=df2['_value'].round(2)
+df.rename(columns = {'_time':'Tiempo'}, inplace = True) 
+
 ##with st.expander("Previsualización de datos"):
 ##    st.dataframe(df)
 
@@ -182,18 +195,7 @@ with col3:
         track_color="#008f39",  # optional
     )
     
-# Desplegable para seleccionar el período de tiempo
-time_period = st.selectbox('Selecciona el período de tiempo:', options)
-df = get_data(time_period)
-df2 = get_kwh(time_period)
 
-to_drop = ['result', 'table', '_measurement', 'tag1', 'tag2']
-df.drop(to_drop, inplace=True, axis=1)
-df['TCAP']=df['TCAP'].round(2)
-df['TDAC']=df['TDAC'].round(2)
-df['TINT']=df['TINT'].round(2)
-df2['_value']=df2['_value'].round(2)
-df.rename(columns = {'_time':'Tiempo'}, inplace = True) 
 
 st.title("Gráficas")
 config = {'displayModeBar': False}
