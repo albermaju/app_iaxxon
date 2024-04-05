@@ -187,6 +187,7 @@ with col2:
 with col3:
     st.metric(label="Temperatura Depósito", value=f"{df.TDAC.iloc[-1]} °C")
     st.write("# ")
+    components.html('<style>.stToggleSwitch> {justify-content: flex-start !important;}</style>')  # Alinea a la izquierda
     tog.st_toggle_switch(
         label="Ventilador ",
         key="switch_2",
