@@ -186,7 +186,6 @@ with col2:
 
 with col3:
     st.metric(label="Temperatura Depósito (ºC)", value=df.TDAC.iloc[-1])
-    st.toggle('Ventilador', estado_ventilador)
     tog.st_toggle_switch(
         label="Ventilador",
         key="switch_2",
