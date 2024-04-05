@@ -181,7 +181,7 @@ with col2:
         label_after=False,
         inactive_color="#D3D3D3",  # optional
         active_color="#008f39",  # optional
-        track_color="#29B5E8",  # optional
+        track_color="#008f39",  # optional
     )
 
 with col3:
@@ -193,7 +193,7 @@ with col3:
         label_after=False,
         inactive_color="#D3D3D3",  # optional
         active_color="#008f39",  # optional
-        track_color="#29B5E8",  # optional
+        track_color="#008f39",  # optional
     )
     
 
