@@ -44,7 +44,6 @@ custom_html = """
 # Display the custom HTML
 st.components.v1.html(custom_html)
 st.title("Centro de Control")
-st.markdown("_Versión v0.1_")
 
 #######################################
 # INFLUXDB
