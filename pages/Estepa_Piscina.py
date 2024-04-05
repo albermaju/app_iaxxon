@@ -175,7 +175,7 @@ with col2:
     st.metric(label="Temperatura Intercambiador", value=f"{df.TINT.iloc[-1]} °C")
     st.write("# ")
     tog.st_toggle_switch(
-        label="Bomba",
+        label="Bomba ",
         key="switch_1",
         default_value= estado_bomba,
         label_after=False,
@@ -188,7 +188,7 @@ with col3:
     st.metric(label="Temperatura Depósito", value=f"{df.TDAC.iloc[-1]} °C")
     st.write("# ")
     tog.st_toggle_switch(
-        label="Ventilador",
+        label="Ventilador ",
         key="switch_2",
         default_value= estado_ventilador,
         label_after=False,
