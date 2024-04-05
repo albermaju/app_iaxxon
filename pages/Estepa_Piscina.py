@@ -194,7 +194,7 @@ with col2:
     estado_bomba = st.checkbox('Bomba', value=estado_bomba)
     # Mostrar el estado de la bomba utilizando st.write
     st.write('Estado de la bomba:', 'Encendida' if estado_bomba else 'Apagada')
-    st.toggle('Bomba' , estado_bomba)
+    ##st.toggle('Bomba' , estado_bomba)
 
 with col3:
     st.metric(label="Temperatura Depósito (ºC)", value=df.TDAC.iloc[-1])
