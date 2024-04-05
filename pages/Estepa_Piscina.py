@@ -180,27 +180,38 @@ with col3:
 
 
 st.title("Gráficas")
+config = {'displayModeBar': False}
+st.markdown(
+    """
+    <style>
+    .css-17y5rwz {
+        overflow-x: hidden !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 with st.container():
     fig = px.line(df, x="Tiempo", y="TCAP",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Captador')
-    st.plotly_chart(fig, use_container_width=True,theme="streamlit")
+    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
     fig = px.line(df, x="Tiempo", y="TDAC",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Depósito Caliente')
-    st.plotly_chart(fig, use_container_width=True,theme="streamlit")
+    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
     fig = px.line(df, x="Tiempo", y="TINT",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Intercambiador')
-    st.plotly_chart(fig, use_container_width=True,theme="streamlit")
+    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
     fig = px.line(df, x="Tiempo", y="TDAF",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Depósito Agua Fría')
-    st.plotly_chart(fig, use_container_width=True,theme="streamlit")
+    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
     
