@@ -169,7 +169,7 @@ st.title("Estado Actual")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.metric(label="Temperatura Captador (ºC)", value=df.TCAP.iloc[-1])
+    st.metric(label="Temperatura Captador", value=f"{df.TCAP.iloc[-1]} °C")
     st.metric(label="Energía Producida (kWh)", value=df2._value.iloc[-1])
 
 with col2:
