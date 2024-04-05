@@ -177,7 +177,7 @@ with col2:
     tog.st_toggle_switch(
         label="Bomba",
         key="switch_1",
-        default_value= estado_ventilador,
+        default_value= estado_bomba,
         label_after=False,
         inactive_color="#D3D3D3",  # optional
         active_color="#11567f",  # optional
@@ -187,6 +187,16 @@ with col2:
 with col3:
     st.metric(label="Temperatura Depósito (ºC)", value=df.TDAC.iloc[-1])
     st.toggle('Ventilador', estado_ventilador)
+    tog.st_toggle_switch(
+        label="Ventilador",
+        key="switch_2",
+        default_value= estado_ventilador,
+        label_after=False,
+        inactive_color="#D3D3D3",  # optional
+        active_color="#11567f",  # optional
+        track_color="#29B5E8",  # optional
+    )
+    
 
 
 st.title("Gráficas")
