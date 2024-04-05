@@ -174,7 +174,6 @@ with col1:
 with col2:
     st.metric(label="Temperatura Intercambiador", value=f"{df.TINT.iloc[-1]} °C")
     st.write("# ")
-    st.write("# ")
     tog.st_toggle_switch(
         label="Bomba",
         key="switch_1",
