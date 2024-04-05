@@ -186,6 +186,7 @@ with col2:
 
 with col3:
     st.metric(label="Temperatura Depósito", value=f"{df.TDAC.iloc[-1]} °C")
+    st.write("# ")
     tog.st_toggle_switch(
         label="Ventilador",
         key="switch_2",
