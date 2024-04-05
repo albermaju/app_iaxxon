@@ -177,11 +177,6 @@ css = """
 # Aplicar el CSS personalizado
 st.markdown(css, unsafe_allow_html=True)
 
-# Mostrar el control de alternancia de la bomba con el color de activación personalizado
-estado_bomba = st.checkbox('Bomba', value=estado_bomba)
-
-# Mostrar el estado de la bomba utilizando st.write
-st.write('Estado de la bomba:', 'Encendida' if estado_bomba else 'Apagada')
 col1, col2, col3 = st.columns(3)
 
 with col1:
