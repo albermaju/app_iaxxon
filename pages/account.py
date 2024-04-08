@@ -69,7 +69,7 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
-login_tab, register_tab = st.tabs(['Login'])
+login_tab = st.tabs(['Login'])
 
 with login_tab:
     authenticator.login(location='main')
