@@ -41,7 +41,7 @@ authenticator = stauth.Authenticate(
 
 # Creating a login widget
 try:
-    authenticator.login()
+    name, authentication_status, username = authenticator.login('main')
 except LoginError as e:
     st.error(e)
 
