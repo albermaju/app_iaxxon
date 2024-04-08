@@ -176,21 +176,14 @@ with col2:
     st.metric(label="Temperatura Depósito", value=f"{df.TDAC.iloc[-1]} °C")
 
 with col3:
-    st.markdown(
-    f"""
-    <div style="text-align: right;">
-        {tog.st_toggle_switch(
+    tog.st_toggle_switch(
         label="Bomba ",
         key="switch_1",
         default_value= estado_bomba,
-        label_after=False,
+        label_after=True,
         inactive_color="#D3D3D3",
         active_color="#D3D3D3", 
         track_color="#008f39", 
-        )}
-    </div>
-    """,
-    unsafe_allow_html=True
     )
     
     tog.st_toggle_switch(
