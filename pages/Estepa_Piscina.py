@@ -11,6 +11,13 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from streamlit_extras.altex import _chart 
 import streamlit_toggle as tog
+from menu import menu_with_redirect
+
+menu_with_redirect()
+
+if st.session_state.role not in ["admin", "super-admin"]:
+    st.warning("Lo sentimos, no tienes autorización para entrar aquí.")
+    st.stop()
 
 #######################################
 # CONFIGURACIÓN DE PÁGINA

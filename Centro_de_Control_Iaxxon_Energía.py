@@ -9,6 +9,7 @@ from streamlit_authenticator.utilities.exceptions import (CredentialsError,
                                                           RegisterError,
                                                           ResetError,
                                                           UpdateError) 
+from menu import menu
 
 
 with open('config.yaml', 'r', encoding='utf-8') as file:
@@ -46,12 +47,15 @@ except LoginError as e:
     st.error(e)
 
 if st.session_state["authentication_status"]:
+    st.session_state.authentication_status = True
     authenticator.logout()
     st.write(f'Welcome *{st.session_state["name"]}*')
     st.title('Some content')
 elif st.session_state["authentication_status"] is False:
+    st.session_state.authentication_status = False
     st.error('Username/password is incorrect')
 elif st.session_state["authentication_status"] is None:
+    st.session_state.authentication_status = None
     st.warning('Please enter your username and password')
 
 # Creating a password reset widget
@@ -63,16 +67,6 @@ if st.session_state["authentication_status"]:
         st.error(e)
     except CredentialsError as e:
         st.error(e)
-
-# # Creating a new user registration widget
-try:
-    (email_of_registered_user,
-        username_of_registered_user,
-        name_of_registered_user) = authenticator.register_user(pre_authorization=False)
-    if email_of_registered_user:
-        st.success('User registered successfully')
-except RegisterError as e:
-    st.error(e)
 
 # Saving config file
 with open('config.yaml', 'w', encoding='utf-8') as file:
