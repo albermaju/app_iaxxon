@@ -58,7 +58,7 @@ def get_roles():
     return {username: user_info['role'] for username, user_info in cred['usernames'].items() if 'role' in user_info}
 
 
-st.header('Centro de control Iaxxon Energía')
+st.header('Centro de control')
 
 
 authenticator = stauth.Authenticate(
