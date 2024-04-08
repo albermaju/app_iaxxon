@@ -3,7 +3,7 @@ from streamlit import session_state as ss
 
 
 def HomeNav():
-    st.sidebar.page_link("Centro_de_Control_Iaxxon_Energía.py", label="Home", icon='🏠')
+    st.sidebar.page_link("Centro_de_Control_Iaxxon_Energía.py", label="Home", icon= '🌤️')
 
 
 def LoginNav():
