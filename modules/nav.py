@@ -1,13 +1,8 @@
 import streamlit as st
 from streamlit import session_state as ss
 
-
-def HomeNav():
-    st.sidebar.page_link("Centro_de_Control_Iaxxon_Energía.py", label="Home", icon= '🌤️')
-
-
 def LoginNav():
-    st.sidebar.page_link("pages/account.py", label="Identifícate", icon='🔐')
+    st.sidebar.page_link("pages/account.py", label="Iaxxon Energía", icon='🌤️')
 
 
 def Page1Nav():
@@ -26,7 +21,6 @@ def MenuButtons(user_roles=None):
         ss.authentication_status = False
 
     # Always show the home and login navigators.
-    HomeNav()
     LoginNav()
 
     # Show the other page navigators depending on the users' role.
