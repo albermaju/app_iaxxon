@@ -11,11 +11,11 @@ def LoginNav():
 
 
 def Page1Nav():
-    st.sidebar.page_link("pages/Estepa_Pabellon.py", label="Page 1")
+    st.sidebar.page_link("pages/Estepa_Pabellon.py", label="Pabellon Estepa")
 
 
 def Page2Nav():
-    st.sidebar.page_link("pages/Estepa_Piscina.py", label="Page 2")
+    st.sidebar.page_link("pages/Estepa_Piscina.py", label="Piscina Estepa")
 
 
 def MenuButtons(user_roles=None):
