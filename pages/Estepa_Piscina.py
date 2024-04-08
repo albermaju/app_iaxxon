@@ -23,6 +23,13 @@ if 'authentication_status' not in ss:
 
 MenuButtons(get_roles())
 
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
 if ss["authentication_status"]:
     authenticator.logout("Logout")    
     st.write(f'Bienvenid@ *{ss["name"]}*')
