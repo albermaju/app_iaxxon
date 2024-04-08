@@ -9,7 +9,7 @@ credentials:
       name: Juan Castro
       password: def # To be replaced with hashed password
 cookie:
-  expiry_days: 30
+  expiry_days: 0
   key: random_signature_key # Must be string
   name: random_cookie_name
 preauthorized:

@@ -12,7 +12,9 @@ from datetime import datetime, timedelta
 from streamlit_extras.altex import _chart 
 import streamlit_toggle as tog
 from menu import menu_with_redirect
+from navigation import make_sidebar
 
+make_sidebar()
 menu_with_redirect()
 
 if st.session_state.role not in ["admin", "super-admin"]:
@@ -161,14 +163,9 @@ df['TINT']=df['TINT'].round(2)
 df2['_value']=df2['_value'].round(2)
 df.rename(columns = {'_time':'Tiempo'}, inplace = True) 
 
-##with st.expander("Previsualización de datos"):
-##    st.dataframe(df)
-
-
 #######################################
 # DISEÑO PÁGINA STREAMLIT
 #######################################
-
 
 st.title("Estado Actual")
 

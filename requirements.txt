@@ -3,6 +3,6 @@ pandas == 2.2.1
 duckdb == 0.10.1
 plotly == 5.20.0
 streamlit-authenticator == 0.3.2
-streamlit == 1.32.0
+streamlit >= 1.32.2
 streamlit_extras == 0.4.2
 streamlit-toggle-switch == 1.0.2
