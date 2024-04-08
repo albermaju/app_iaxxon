@@ -197,15 +197,7 @@ with col2:
     st.metric(label="Temperatura Depósito", value=f"{df.TDAC.iloc[-1]} °C")
 
 with col3:
-    tog.st_toggle_switch(
-        label="Bomba ",
-        key="switch_1",
-        default_value= estado_bomba,
-        label_after=False,
-        inactive_color="#D3D3D3",  # optional
-        active_color="#D3D3D3",  # optional
-        track_color="#008f39",  # optional
-    )
+    contenido
     tog.st_toggle_switch(
         label="Ventilador ",
         key="switch_2",
