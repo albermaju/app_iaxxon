@@ -23,7 +23,7 @@ st.markdown(
 
 """
 )
-authenticator = Authenticate(
+authenticator = stauth.Authenticate(
     config['credentials'],
     config['cookie']['name'],
     config['cookie']['key'],
