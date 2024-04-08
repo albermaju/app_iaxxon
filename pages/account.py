@@ -69,16 +69,16 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
-    authenticator.login(location='main')
+authenticator.login(location='main')
 
-    if ss["authentication_status"]:
-        authenticator.logout(location='main')    
-        st.write(f'Welcome *{ss["name"]}*')
+if ss["authentication_status"]:
+    authenticator.logout(location='main')    
+    st.write(f'Welcome *{ss["name"]}*')
 
-    elif ss["authentication_status"] is False:
-        st.error('Username/password is incorrect')
-    elif ss["authentication_status"] is None:
-        st.warning('Please enter your username and password')
+elif ss["authentication_status"] is False:
+    st.error('Username/password is incorrect')
+elif ss["authentication_status"] is None:
+    st.warning('Please enter your username and password')
 
 # Call this late because we show the page navigator depending on who logged in.
 MenuButtons(get_roles())
