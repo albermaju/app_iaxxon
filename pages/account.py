@@ -69,9 +69,6 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
-login_tab = st.tabs(['Login'])
-
-with login_tab:
     authenticator.login(location='main')
 
     if ss["authentication_status"]:
