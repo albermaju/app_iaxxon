@@ -18,6 +18,17 @@ from pages.account import get_roles
 
 st.set_page_config(page_title="Centro de Control Iaxxon | Piscina de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
 
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
+if ss["authentication_status"]:
+    authenticator.logout(location='sidebar') 
+    
 if 'authentication_status' not in ss:
     st.switch_page('./pages/account.py')
 
