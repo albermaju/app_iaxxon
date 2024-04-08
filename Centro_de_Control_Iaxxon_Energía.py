@@ -3,7 +3,7 @@ from streamlit_extras.app_logo import add_logo
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
-with open('../config.yaml') as file:
+with open('config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 st.set_page_config(
