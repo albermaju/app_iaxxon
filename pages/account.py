@@ -73,7 +73,7 @@ authenticator.login(location='main')
 
 if ss["authentication_status"]:
     authenticator.logout(location='main')    
-    st.write(f'Welcome *{ss["name"]}*')
+    st.write(f'Bienvenid@ *{ss["name"]}*')
 
 elif ss["authentication_status"] is False:
     st.error('Username/password is incorrect')

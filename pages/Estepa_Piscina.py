@@ -23,6 +23,11 @@ if 'authentication_status' not in ss:
 
 MenuButtons(get_roles())
 
+if ss["authentication_status"]:
+    authenticator.logout(location='main')    
+    st.write(f'Bienvenid@ *{ss["name"]}*')
+
+
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
