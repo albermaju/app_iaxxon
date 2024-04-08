@@ -5,10 +5,42 @@ import yaml
 from yaml.loader import SafeLoader
 from modules.nav import MenuButtons
 
+st.set_page_config(page_title="Centro de Control Iaxxon Energía", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
+
+
+
+#######################################
+# CONFIGURACIÓN DE PÁGINA
+#######################################
+
+# Custom HTML/CSS for the banner
+custom_html = """
+<div class="banner">
+    <img src="https://i.imgur.com/SJQWq0F.png" alt="Banner Image">
+</div>
+<style>
+    .banner {
+	    margin: 30px auto;
+	    width: 40%;
+	    min-width: 230px;
+	    max-width: 330px;
+	    position: relative;
+	    height: auto;
+	    min-height: 300px;
+	    max-height: 500px;
+	    overflow: hidden;
+    }
+    .banner img {
+	    max-width : 330px;
+	    width: 100%;
+	    position: absolute;
+    }
+</style>
+"""
+# Display the custom HTML
+st.components.v1.html(custom_html)
 
 CONFIG_FILENAME = 'config.yaml'
-
-
 with open(CONFIG_FILENAME) as file:
     config = yaml.load(file, Loader=SafeLoader)
 
@@ -26,7 +58,7 @@ def get_roles():
     return {username: user_info['role'] for username, user_info in cred['usernames'].items() if 'role' in user_info}
 
 
-st.header('Account page')
+st.header('Centro de control Iaxxon Energía')
 
 
 authenticator = stauth.Authenticate(
