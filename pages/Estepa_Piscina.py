@@ -21,7 +21,6 @@ if 'authentication_status' not in ss:
     st.switch_page('./pages/account.py')
 
 MenuButtons(get_roles())
-st.header('Page 2')
 
 #######################################
 # CONFIGURACIÓN DE PÁGINA
