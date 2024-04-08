@@ -165,6 +165,17 @@ df.rename(columns = {'_time':'Tiempo'}, inplace = True)
 
 st.title("Estado Actual")
 
+st.markdown(
+    """
+    <style>
+        div[data-testid="column"]:nth-of-type(3)
+        {
+            text-align: left;
+        } 
+    </style>
+    """,unsafe_allow_html=True
+)
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
