@@ -190,7 +190,7 @@ with col3:
         label="Ventilador ",
         key="switch_2",
         default_value= estado_ventilador,
-        label_after=False,
+        label_after=True,
         inactive_color="#D3D3D3",  # optional
         active_color="#D3D3D3",  # optional
         track_color="#008f39",  # optional
