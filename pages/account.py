@@ -51,18 +51,5 @@ with login_tab:
     elif ss["authentication_status"] is None:
         st.warning('Please enter your username and password')
 
-with register_tab:
-    if not ss["authentication_status"]:
-        try:
-            email_of_registered_user, username_of_registered_user, name_of_registered_user = authenticator.register_user(pre_authorization=False)
-            if email_of_registered_user:
-                st.success('User registered successfully')
-        except Exception as e:
-            st.error(e)
-
-# We call below code in case of registration, reset password, etc.
-with open(CONFIG_FILENAME, 'w') as file:
-    yaml.dump(config, file, default_flow_style=False)
-
 # Call this late because we show the page navigator depending on who logged in.
 MenuButtons(get_roles())
