@@ -11,10 +11,15 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from streamlit_extras.altex import _chart 
 import streamlit_toggle as tog
+from streamlit import session_state as ss
+from modules.nav import MenuButtons
+from pages.account import get_roles
 
-if st.session_state.role not in ["admin", "super-admin"]:
-    st.warning("Lo sentimos, no tienes autorización para entrar aquí.")
-    st.stop()
+if 'authentication_status' not in ss:
+    st.switch_page('./pages/account.py')
+
+MenuButtons(get_roles())
+st.header('Page 2')
 
 #######################################
 # CONFIGURACIÓN DE PÁGINA
