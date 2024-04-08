@@ -177,25 +177,26 @@ with col2:
 
 with col3:
     st.write("# ")
-    tog.st_toggle_switch(
-        label="Bomba ",
-        key="switch_1",
-        default_value= estado_bomba,
-        label_after=False,
-        inactive_color="#D3D3D3",  # optional
-        active_color="#D3D3D3",  # optional
-        track_color="#008f39",  # optional
-    )
-    st.write("# ")
-    tog.st_toggle_switch(
-        label="Ventilador ",
-        key="switch_2",
-        default_value= estado_ventilador,
-        label_after=False,
-        inactive_color="#D3D3D3",  # optional
-        active_color="#D3D3D3",  # optional
-        track_color="#008f39",  # optional
-    )
+    with st.expander("Control de Dispositivos"):
+        tog.st_toggle_switch(
+            label="Bomba ",
+            key="switch_1",
+            default_value= estado_bomba,
+            label_after=False,
+            inactive_color="#D3D3D3",  # optional
+            active_color="#D3D3D3",  # optional
+            track_color="#008f39",  # optional
+        )
+        st.write("# ")
+        tog.st_toggle_switch(
+            label="Ventilador ",
+            key="switch_2",
+            default_value= estado_ventilador,
+            label_after=False,
+            inactive_color="#D3D3D3",  # optional
+            active_color="#D3D3D3",  # optional
+            track_color="#008f39",  # optional
+        )
     
 
 
