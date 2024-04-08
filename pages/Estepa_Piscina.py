@@ -165,15 +165,25 @@ df.rename(columns = {'_time':'Tiempo'}, inplace = True)
 
 st.title("Estado Actual")
 
+# Agregar el contenido que deseas alinear a la derecha
+contenido = tog.st_toggle_switch(
+        label="Bomba ",
+        key="switch_1",
+        default_value= estado_bomba,
+        label_after=False,
+        inactive_color="#D3D3D3",  # optional
+        active_color="#D3D3D3",  # optional
+        track_color="#008f39",  # optional
+    )
+
+# Utilizar st.markdown con HTML y CSS para alinear a la derecha
 st.markdown(
-    """
-    <style>
-        div[data-testid="column"]:nth-of-type(3)
-        {
-            text-align: left;
-        } 
-    </style>
-    """,unsafe_allow_html=True
+    f"""
+    <div style="text-align: left;">
+        {contenido}
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 col1, col2, col3 = st.columns(3)
