@@ -184,9 +184,9 @@ with col3:
         key="switch_1",
         default_value= estado_bomba,
         label_after=False,
-        inactive_color="#D3D3D3",  # optional
-        active_color="#D3D3D3",  # optional
-        track_color="#008f39",  # optional
+        inactive_color="#D3D3D3",
+        active_color="#D3D3D3", 
+        track_color="#008f39", 
         )}
     </div>
     """,
