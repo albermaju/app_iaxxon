@@ -10,18 +10,16 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
 
-st.set_page_config(page_title="Centro de Control Iaxxon | Pabellón de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
-
 if 'authentication_status' not in ss:
     st.switch_page('./pages/account.py')
 
-MenuButtons(get_roles())
+st.set_page_config(page_title="Centro de Control Iaxxon | Pabellón de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
 
+MenuButtons(get_roles())
 
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
-st.set_page_config(page_title="Centro de Control Iaxxon | Piscina de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
 
 # Custom HTML/CSS for the banner
 custom_html = """
