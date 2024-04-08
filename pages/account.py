@@ -72,7 +72,7 @@ authenticator = stauth.Authenticate(
 authenticator.login(location='main')
 
 if ss["authentication_status"]:
-    authenticator.logout(location='main')    
+    authenticator.logout(location='sidebar')    
     st.write(f'Bienvenid@ *{ss["name"]}*')
 
 elif ss["authentication_status"] is False:

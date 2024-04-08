@@ -22,17 +22,6 @@ st.set_page_config(page_title="Centro de Control Iaxxon | Pabellón de Estepa", 
 
 MenuButtons(get_roles())
 
-authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
-if ss["authentication_status"]:
-    authenticator.logout("Logout")      
-    st.write(f'Bienvenid@ *{ss["name"]}*')
-
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
