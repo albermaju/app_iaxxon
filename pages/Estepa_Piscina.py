@@ -15,6 +15,8 @@ from streamlit import session_state as ss
 from modules.nav import MenuButtons
 from pages.account import get_roles
 
+st.set_page_config(page_title="Centro de Control Iaxxon | Piscina de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
+
 if 'authentication_status' not in ss:
     st.switch_page('./pages/account.py')
 
@@ -24,7 +26,6 @@ st.header('Page 2')
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
-st.set_page_config(page_title="Centro de Control Iaxxon | Piscina de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
 
 # Custom HTML/CSS for the banner
 custom_html = """
