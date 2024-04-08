@@ -14,6 +14,7 @@ import streamlit_toggle as tog
 from streamlit import session_state as ss
 from modules.nav import MenuButtons
 from pages.account import get_roles
+import streamlit_authenticator as stauth
 
 if 'authentication_status' not in ss:
     st.switch_page('./pages/account.py')
@@ -30,7 +31,7 @@ authenticator = stauth.Authenticate(
 
 if ss["authentication_status"]:
     authenticator.logout(location='sidebar') 
-    
+
 MenuButtons(get_roles())
 
 #######################################
