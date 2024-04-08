@@ -233,15 +233,3 @@ with st.container():
                   title='Temperatura Depósito Agua Fría')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
     
-st.markdown(
-    """
-    <style>
-    @media only screen and (max-width: 600px) {
-        .stContainer > div {
-            overflow-x: hidden !important;
-        }
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
