@@ -23,7 +23,7 @@ st.set_page_config(page_title="Centro de Control Iaxxon | Pabellón de Estepa", 
 MenuButtons(get_roles())
 
 if ss["authentication_status"]:
-    authenticator.logout(location='main')    
+    authenticator.logout("Logout")      
     st.write(f'Bienvenid@ *{ss["name"]}*')
 
 #######################################
