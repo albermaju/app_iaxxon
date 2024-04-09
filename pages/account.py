@@ -66,7 +66,7 @@ authenticator = stauth.Authenticate(
     config['cookie']['name'],
     config['cookie']['key'],
     config['cookie']['expiry_days'],
-    config['pre-authorized']
+    config['preauthorized']
 )
 
 authenticator.login(location='main')
@@ -82,7 +82,7 @@ elif ss["authentication_status"] is None:
 
 if st.session_state["authentication_status"]:
     try:
-        if authenticator.reset_password(st.session_state["username"]):
+        if authenticator.reset_password(st.session_state["name"]):
             st.success('Password modified successfully')
     except Exception as e:
         st.error(e)
