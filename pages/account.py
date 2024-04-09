@@ -7,8 +7,6 @@ from modules.nav import MenuButtons
 
 st.set_page_config(page_title="Centro de Control Iaxxon Energía", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
 
-
-
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
@@ -87,7 +85,7 @@ with resetpassword_tab
 
     if st.session_state["authentication_status"]:
         try:
-            if authenticator.reset_password(st.session_state["name"]):
+            if authenticator.reset_password(st.session_state["username"]):
                 st.success('Contraseña modificada con éxito')
         except Exception as e:
             st.error(e)
