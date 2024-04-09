@@ -16,6 +16,4 @@ credentials:
       name: Rebecca Briggs
       password: $2b$12$uON60sh.2IdIk4cka2YILuRo4kQai.pU8McK/owmmJ.QawK85GrdK
       role: admin
-preauthorized:
-  emails:
-  - melsby@gmail.com
+      
