@@ -17,6 +17,15 @@ def Page1Nav():
 def Page2Nav():
     st.sidebar.page_link("pages/Estepa_Piscina.py", label="Piscina Estepa")
 
+def Page3Nav():
+    st.sidebar.page_link("pages/Estepa_Piscina.py", label="Colegio Do Brasil")
+
+def Page4Nav():
+    st.sidebar.page_link("pages/Estepa_Piscina.py", label="Campo de Fútbol Estepa")
+
+def Page5Nav():
+    st.sidebar.page_link("pages/Estepa_Piscina.py", label="Bodegas Habla")
+
 
 def MenuButtons(user_roles=None):
     if user_roles is None:
@@ -35,10 +44,14 @@ def MenuButtons(user_roles=None):
         # (1) Only the admin role can access page 1 and other pages.
         # In a user roles get all the usernames with admin role.
         admins = [k for k, v in user_roles.items() if v == 'admin']
-
+        estepa = [k for k, v in user_roles.items() if v == 'estepa']
         # Show page 1 if the username that logged in is an admin.
         if ss.username in admins:
             Page1Nav()
-
-        # (2) users with user and admin roles have access to page 2.
-        Page2Nav()     
+            Page2Nav()
+            Page3Nav()
+            Page4Nav()
+            Page5Nav()
+        elif ss.username in estepa:
+            Page1Nav()
+            Page2Nav()

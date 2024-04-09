@@ -113,14 +113,9 @@ df['TDAC']=df['TDAC'].round(2)
 df['TINT']=df['TINT'].round(2)
 df.rename(columns = {'_time':'Tiempo'}, inplace = True) 
 
-with st.expander("Previsualización de datos"):
-    st.dataframe(df)
-
-
 #######################################
 # DISEÑO PÁGINA STREAMLIT
 #######################################
-
 
 st.title("Estado Actual")
 
