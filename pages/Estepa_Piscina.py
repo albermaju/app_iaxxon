@@ -61,9 +61,9 @@ st.title("Centro de Control | Piscina de Estepa")
 #######################################
 
 client = influxdb_client.InfluxDBClient(
-    url=st.secrets.influxdb_credentials.url,
-    token=st.secrets.influxdb_credentials.token,
-    org=st.secrets.influxdb_credentials.org
+    url=st.secrets.db_credentials.url,
+    token=st.secrets.db_credentials.token,
+    org=st.secrets.db_credentials.org
     )
 
 #######################################
