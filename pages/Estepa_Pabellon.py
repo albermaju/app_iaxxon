@@ -58,16 +58,12 @@ st.title("Centro de Control")
 #######################################
 # INFLUXDB
 #######################################
-org = "a.marana@equsdesign.com"
-bucket1 = "Estepa_Piscina_v3"
-token = "OepRh4h6woJ_yFar3rxWTKhKW9ryBLMpcBLV7T5OE_3dsuJwTJv3rbZLUUkDI3ht1__Wedk_a0E4-126YtcK-g=="
-url = "https://eastus-1.azure.cloud2.influxdata.com"
 
 client = influxdb_client.InfluxDBClient(
-    url=url,
-    token=token,
-    org=org
-)
+    url=st.secrets.db_credentials.url,
+    token=st.secrets.db_credentials.token,
+    org=st.secrets.db_credentials.org
+    )
 
 #######################################
 # CARGA DE DATOS
