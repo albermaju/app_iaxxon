@@ -144,8 +144,10 @@ query_pump = f'''from(bucket: "Estepa_Piscina_v3")\
     |> yield(name: "last")'''
     
 dffan = query_api.query_data_frame(org="my-org", query=query_fan)
+dffan["_value"].fillna(0, inplace=True)
 estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
+dfpump["_value"].fillna(0, inplace=True)
 dfpump = query_api.query_data_frame(org="my-org", query=query_pump)
 estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
