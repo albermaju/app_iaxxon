@@ -69,6 +69,7 @@ authenticator = stauth.Authenticate(
 )
 
 authenticator.login(location='main')
+authenticator.reset_password(location='main')
 
 if ss["authentication_status"]:
     authenticator.logout(location='sidebar')    
