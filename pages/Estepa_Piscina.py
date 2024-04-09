@@ -139,10 +139,10 @@ query_pump = f'''from(bucket: "Estepa_Piscina_v3")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")'''
     
-dffan = query_api.query_data_frame(org="my-org", query=query_fan)
+dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
 estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
-dfpump = query_api.query_data_frame(org="my-org", query=query_pump)
+dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
 estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
 # Lista de opciones para el desplegable
