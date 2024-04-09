@@ -80,5 +80,17 @@ elif ss["authentication_status"] is False:
 elif ss["authentication_status"] is None:
     st.warning('Please enter your username and password')
 
+if st.session_state["authentication_status"]:
+    try:
+        if authenticator.reset_password(st.session_state["username"]):
+            st.success('Password modified successfully')
+    except Exception as e:
+        st.error(e)
+        
+with open('config.yaml', 'w') as file:
+    yaml.dump(config, file, default_flow_style=False)   
+
+
+
 # Call this late because we show the page navigator depending on who logged in.
 MenuButtons(get_roles())
