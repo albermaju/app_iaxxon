@@ -68,29 +68,29 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days']
 )
 
-authenticator.login(location='main')
-authenticator.reset_password(location='main')
+login_tab, reset_password_tab = st.tabs(['Iniciar Sesión', 'Nueva Contraseña'])
 
-if ss["authentication_status"]:
-    authenticator.logout(location='sidebar')    
-    st.write(f'Bienvenid@ *{ss["name"]}*')
+with login_tab:
+    authenticator.login(location='main')
 
-elif ss["authentication_status"] is False:
-    st.error('Username/password is incorrect')
-elif ss["authentication_status"] is None:
-    st.warning('Please enter your username and password')
+    if ss["authentication_status"]:
+        authenticator.logout(location='main')    
+        st.write(f'Bienvenid@ *{ss["name"]}*')
 
-if st.session_state["authentication_status"]:
-    try:
-        if authenticator.reset_password(st.session_state["name"]):
-            st.success('Password modified successfully')
-    except Exception as e:
-        st.error(e)
+    elif ss["authentication_status"] is False:
+        st.error('Usuario o contraseña incorrectos')
+    elif ss["authentication_status"] is None:
+        st.warning('Por favor, introduzca tu usuario y contraseña')
 
-with open('config.yaml', 'w') as file:
-    yaml.dump(config, file, default_flow_style=False)   
-
-
+with reset_password_tab
+    if st.session_state["authentication_status"]:
+        try:
+            if authenticator.reset_password(st.session_state["name"]):
+                st.success('Contraseña modificada con éxito')
+        except Exception as e:
+            st.error(e)
+    with open('config.yaml', 'w') as file:
+        yaml.dump(config, file, default_flow_style=False)   
 
 # Call this late because we show the page navigator depending on who logged in.
 MenuButtons(get_roles())
