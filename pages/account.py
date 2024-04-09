@@ -81,8 +81,6 @@ with login_tab:
         st.warning('Por favor, introduzca tu usuario y contraseña')
 
 with resetpassword_tab
-    authenticator.reset_password(location= 'main')
-
     if st.session_state["authentication_status"]:
         try:
             if authenticator.reset_password(st.session_state["username"]):
