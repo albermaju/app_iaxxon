@@ -68,7 +68,7 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days']
 )
 
-login_tab, reset_password_tab = st.tabs(['Iniciar Sesión', 'Nueva Contraseña'])
+login_tab, resetpassword_tab = st.tabs(['Iniciar Sesión', 'Nueva Contraseña'])
 
 with login_tab:
     authenticator.login(location='main')
@@ -82,17 +82,18 @@ with login_tab:
     elif ss["authentication_status"] is None:
         st.warning('Por favor, introduzca tu usuario y contraseña')
 
-with reset_password_tab
+with resetpassword_tab
     authenticator.reset_password(location= 'main')
-    
+
     if st.session_state["authentication_status"]:
         try:
             if authenticator.reset_password(st.session_state["name"]):
                 st.success('Contraseña modificada con éxito')
         except Exception as e:
             st.error(e)
-    with open('config.yaml', 'w') as file:
-        yaml.dump(config, file, default_flow_style=False)   
+
+with open('config.yaml', 'w') as file:
+    yaml.dump(config, file, default_flow_style=False)      
 
 # Call this late because we show the page navigator depending on who logged in.
 MenuButtons(get_roles())
