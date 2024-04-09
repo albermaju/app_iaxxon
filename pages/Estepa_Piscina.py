@@ -93,7 +93,7 @@ def get_data(time_period):
     |> range(start: -{start_time})\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'
 
-    result = query_api.query_data_frame(org=org, query=query.strip())
+    result = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query.strip())
     return result
 
 def get_kwh(time_period):
@@ -123,7 +123,7 @@ def get_kwh(time_period):
     |> filter(fn: (r) => r["_field"] == "energia_kwh")\
     |> sum()'''
 
-    result = query_api.query_data_frame(org=org, query=query)
+    result = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query)
     return result
 
 query_api = client.query_api()
