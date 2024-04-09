@@ -9,7 +9,7 @@ credentials:
       logged_in: false
       name: John Smith
       password: $2b$12$qgpdymNsKCf9Hjwg.NSXiO9/ItCdKVNoJBWQf6EAk9n73HgkAJmEC
-      role: estepa
+      role: admin
     rbriggs:
       email: rbriggs@gmail.com
       logged_in: false
