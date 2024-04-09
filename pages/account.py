@@ -80,7 +80,7 @@ with login_tab:
     elif ss["authentication_status"] is None:
         st.warning('Por favor, introduzca tu usuario y contraseña')
 
-with resetpassword_tab
+with resetpassword_tab:
     if st.session_state["authentication_status"]:
         try:
             if authenticator.reset_password(st.session_state["username"]):
