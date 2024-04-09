@@ -59,16 +59,12 @@ st.title("Centro de Control | Piscina de Estepa")
 #######################################
 # INFLUXDB
 #######################################
-org = "a.marana@equsdesign.com"
-bucket1 = "Estepa_Piscina_v3"
-token = "OepRh4h6woJ_yFar3rxWTKhKW9ryBLMpcBLV7T5OE_3dsuJwTJv3rbZLUUkDI3ht1__Wedk_a0E4-126YtcK-g=="
-url = "https://eastus-1.azure.cloud2.influxdata.com"
 
 client = influxdb_client.InfluxDBClient(
-    url=url,
-    token=token,
-    org=org
-)
+    url=st.secrets.influxdb_credentials.url,
+    token=st.secrets.influxdb_credentials.token,
+    org=st.secrets.influxdb_credentials.org
+    )
 
 #######################################
 # CARGA DE DATOS
@@ -127,7 +123,7 @@ def get_kwh(time_period):
     |> filter(fn: (r) => r["_field"] == "energia_kwh")\
     |> sum()'''
 
-    result = query_api.query_data_frame(org="my-org", query=query)
+    result = query_api.query_data_frame(org=org, query=query)
     return result
 
 query_api = client.query_api()
