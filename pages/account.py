@@ -66,7 +66,7 @@ authenticator = stauth.Authenticate(
     config['cookie']['name'],
     config['cookie']['key'],
     config['cookie']['expiry_days'],
-    config['preauthorized']
+    config['pre-authorized']
 )
 
 authenticator.login(location='main')
@@ -86,7 +86,7 @@ if st.session_state["authentication_status"]:
             st.success('Password modified successfully')
     except Exception as e:
         st.error(e)
-        
+
 with open('config.yaml', 'w') as file:
     yaml.dump(config, file, default_flow_style=False)   
 
