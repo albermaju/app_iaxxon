@@ -226,6 +226,30 @@ try:
 
         desc.append(item["weather"][0]["description"].title())
 
+    def bargraph():
+        fig=go.Figure(data=
+            [
+            go.Bar(name="Maximum",x=dates,y=maxtemp,marker_color='crimson'),
+            go.Bar(name="Minimum",x=dates,y=mintemp,marker_color='navy')
+            ])
+        fig.update_layout(xaxis_title="Dates",yaxis_title="Temperature",barmode='group',margin=dict(l=70, r=10, t=80, b=80),font=dict(color="white"))
+        st.plotly_chart(fig)
+        
+    def linegraph():
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=dates, y=mintemp, name='Minimum '))
+        fig.add_trace(go.Scatter(x=dates, y=maxtemp, name='Maximimum ',marker_color='crimson'))
+        fig.update_layout(xaxis_title="Dates",yaxis_title="Temperature",font=dict(color="white"))
+        st.plotly_chart(fig)
+            
+    icon=x["weather"][0]["icon"]
+    current_weather=x["weather"][0]["description"].title()
+        
+    if unit=="Celsius":
+        temp=str(round(x["main"]["temp"]-cel,2))
+    else:
+        temp=str(round((((x["main"]["temp"]-cel)*1.8)+32),2))
+
     st.subheader("Temperatura Actual")
     col1, col2= st.columns(2)
     col1.metric("Temperatura",temp+temp_unit)
@@ -233,7 +257,7 @@ try:
     st.subheader(" ")
 
 except KeyError:
-    st.error(" Invalid city!!  Please try again !!")
+    st.error("Invalid city!!  Please try again !!")
 
 col1, col2, col3 = st.columns(3)
 
