@@ -188,7 +188,7 @@ try:
     lon=x["coord"]["lon"]
     lat=x["coord"]["lat"]
     ex="current,minutely,hourly"
-    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&appid={api}'
+    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&lang=es&appid={api}'
     res=requests.get(url2)
     y=res.json()
 
@@ -257,7 +257,7 @@ try:
     st.subheader(" ")
 
 except KeyError:
-    st.error("Invalid city!!  Please try again !!")
+    st.error("¡Ciudad no encontrada!")
 
 col1, col2, col3 = st.columns(3)
 
