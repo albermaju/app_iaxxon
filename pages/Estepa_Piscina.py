@@ -182,62 +182,61 @@ url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api}"
 response=requests.get(url)
 x=response.json()
 
-if city=="Estepa":
-    try:
-        lon=x["coord"]["lon"]
-        lat=x["coord"]["lat"]
-        ex="current,minutely,hourly"
-        url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&appid={api}'
-        res=requests.get(url2)
-        y=res.json()
+try:
+    lon=x["coord"]["lon"]
+    lat=x["coord"]["lat"]
+    ex="current,minutely,hourly"
+    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&appid={api}'
+    res=requests.get(url2)
+    y=res.json()
 
-        maxtemp=[]
-        mintemp=[]
-        pres=[]
-        humd=[]
-        wspeed=[]
-        desc=[]
-        cloud=[]
-        rain=[]
-        dates=[]
-        sunrise=[]
-        sunset=[]
-        cel=273.15
+    maxtemp=[]
+    mintemp=[]
+    pres=[]
+    humd=[]
+    wspeed=[]
+    desc=[]
+    cloud=[]
+    rain=[]
+    dates=[]
+    sunrise=[]
+    sunset=[]
+    cel=273.15
         
-        for item in y["daily"]:
-            if unit=="Celsius":
-                maxtemp.append(round(item["temp"]["max"]-cel,2))
-                mintemp.append(round(item["temp"]["min"]-cel,2))
-            else:
-                maxtemp.append(round((((item["temp"]["max"]-cel)*1.8)+32),2))
-                mintemp.append(round((((item["temp"]["min"]-cel)*1.8)+32),2))
+    for item in y["daily"]:
+        if unit=="Celsius":
+            maxtemp.append(round(item["temp"]["max"]-cel,2))
+            mintemp.append(round(item["temp"]["min"]-cel,2))
+        else:
+            maxtemp.append(round((((item["temp"]["max"]-cel)*1.8)+32),2))
+            mintemp.append(round((((item["temp"]["min"]-cel)*1.8)+32),2))
 
-            if wind_unit=="m/s":
-                wspeed.append(str(round(item["wind_speed"],1))+wind_unit)
-            else:
-                wspeed.append(str(round(item["wind_speed"]*3.6,1))+wind_unit)
+        if wind_unit=="m/s":
+            wspeed.append(str(round(item["wind_speed"],1))+wind_unit)
+        else:
+            wspeed.append(str(round(item["wind_speed"]*3.6,1))+wind_unit)
 
-            pres.append(item["pressure"])
-            humd.append(str(item["humidity"])+' %')
+        pres.append(item["pressure"])
+        humd.append(str(item["humidity"])+' %')
             
-            cloud.append(str(item["clouds"])+' %')
-            rain.append(str(int(item["pop"]*100))+'%')
+        cloud.append(str(item["clouds"])+' %')
+        rain.append(str(int(item["pop"]*100))+'%')
 
-            desc.append(item["weather"][0]["description"].title())
+        desc.append(item["weather"][0]["description"].title())
 
-            d1=datetime.date.fromtimestamp(item["dt"])
-            dates.append(d1.strftime('%d %b'))
+        d1=datetime.date.fromtimestamp(item["dt"])
+        dates.append(d1.strftime('%d %b'))
             
-            sunrise.append( datetime.datetime.utcfromtimestamp(item["sunrise"]).strftime('%H:%M'))
-            sunset.append( datetime.datetime.utcfromtimestamp(item["sunset"]).strftime('%H:%M'))
+        sunrise.append( datetime.datetime.utcfromtimestamp(item["sunrise"]).strftime('%H:%M'))
+        sunset.append( datetime.datetime.utcfromtimestamp(item["sunset"]).strftime('%H:%M'))
 
 
 
-        st.subheader("Temperatura Actual")
-        col1, col2= st.columns(2)
-        col1.metric("Temperatura",temp+temp_unit)
-        col2.metric("Climatología",current_weather)
-        st.subheader(" ")
+st.subheader("Temperatura Actual")
+col1, col2= st.columns(2)
+col1.metric("Temperatura",temp+temp_unit)
+col2.metric("Climatología",current_weather)
+st.subheader(" ")
 
 
 col1, col2, col3 = st.columns(3)
