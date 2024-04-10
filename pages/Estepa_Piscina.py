@@ -306,6 +306,16 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+st.markdown('''
+    <style>
+    .element-container:nth-child(3) .overlayBtn {visibility: hidden;}
+    .element-container:nth-child(12) .overlayBtn {visibility: hidden;}
+    </style>
+    ''', 
+    unsafe_allow_html=True
+    ) 
+
 with st.container():
     fig = px.line(df, x="Tiempo", y="TCAP",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
