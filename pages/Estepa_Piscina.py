@@ -230,16 +230,17 @@ try:
             
         sunrise.append( datetime.datetime.utcfromtimestamp(item["sunrise"]).strftime('%H:%M'))
         sunset.append( datetime.datetime.utcfromtimestamp(item["sunset"]).strftime('%H:%M'))
-except Exception as e:
-    st.error(e)
 
 
-st.subheader("Temperatura Actual")
-col1, col2= st.columns(2)
-col1.metric("Temperatura",temp+temp_unit)
-col2.metric("Climatología",current_weather)
-st.subheader(" ")
 
+    st.subheader("Temperatura Actual")
+    col1, col2= st.columns(2)
+    col1.metric("Temperatura",temp+temp_unit)
+    col2.metric("Climatología",current_weather)
+    st.subheader(" ")
+
+except KeyError:
+    st.error(" Invalid city!!  Please try again !!")
 
 col1, col2, col3 = st.columns(3)
 
