@@ -243,7 +243,7 @@ try:
         st.plotly_chart(fig)
             
     icon=x["weather"][0]["icon"]
-    current_weather=x["weather"][0]["icon"].title()
+    current_weather=x["weather"][0]["description"].title()
         
     if unit=="Celsius":
         temp=str(round(x["main"]["temp"]-cel,2))
@@ -253,7 +253,7 @@ try:
     st.subheader("Temperatura Actual")
     col1, col2= st.columns(2)
     col1.metric("Temperatura",temp+temp_unit)
-    col2.metric("Climatología",current_weather)
+    col2.metric("Climatología",icon)
     st.subheader(" ")
 
 except KeyError:
