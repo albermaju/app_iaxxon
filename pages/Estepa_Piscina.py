@@ -234,11 +234,11 @@ if(city=="Estepa"):
 
 
 
-st.title("Temperatura Actual")
-col1, col2= st.columns(2)
-col1.metric("Temperatura",temp+temp_unit)
-col2.metric("Climatología",current_weather)
-st.subheader(" ")
+        st.title("Temperatura Actual")
+        col1, col2= st.columns(2)
+        col1.metric("Temperatura",temp+temp_unit)
+        col2.metric("Climatología",current_weather)
+        st.subheader(" ")
 
 
 col1, col2, col3 = st.columns(3)
