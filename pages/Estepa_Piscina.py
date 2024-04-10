@@ -251,7 +251,7 @@ try:
         temp=str(round((((x["main"]["temp"]-cel)*1.8)+32),2))
 
     url_png = f'http://openweathermap.org/img/w/{icon}.png'
-    st.subheader("Temperatura y nubosidad actual en {city}")
+    st.subheader(f"Temperatura y nubosidad actual en {city}")
     col1, col2, col3= st.columns(3)
     col1.metric("",temp+temp_unit)
     with col2:
