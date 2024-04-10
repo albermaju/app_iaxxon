@@ -250,10 +250,12 @@ try:
     else:
         temp=str(round((((x["main"]["temp"]-cel)*1.8)+32),2))
 
+    url_png = f'http://openweathermap.org/img/w/{icon}.png'
     st.subheader("Temperatura Actual")
     col1, col2= st.columns(2)
     col1.metric("Temperatura",temp+temp_unit)
-    col2.metric("Climatología",icon)
+    col2.metric("Climatología",st.image(url_png, width=100))
+
     st.subheader(" ")
 
 except KeyError:
