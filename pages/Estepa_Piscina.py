@@ -252,7 +252,7 @@ try:
 
     url_png = f'http://openweathermap.org/img/w/{icon}.png'
     st.subheader("Temperatura y nubosidad actual")
-    col1, col2= st.columns(2)
+    col1, col2, col3, col4= st.columns(4)
     col1.metric(f"Temperatura en {city}",temp+temp_unit)
     with col2:
         st.image(url_png, width=75)
