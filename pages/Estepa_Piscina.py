@@ -182,7 +182,7 @@ url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api}"
 response=requests.get(url)
 x=response.json()
 
-if(city=="Estepa"):
+if city=="Estepa":
     try:
         lon=x["coord"]["lon"]
         lat=x["coord"]["lat"]
@@ -234,7 +234,7 @@ if(city=="Estepa"):
 
 
 
-        st.title("Temperatura Actual")
+        st.subheader("Temperatura Actual")
         col1, col2= st.columns(2)
         col1.metric("Temperatura",temp+temp_unit)
         col2.metric("Climatología",current_weather)
