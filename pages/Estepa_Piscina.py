@@ -226,14 +226,6 @@ try:
 
         desc.append(item["weather"][0]["description"].title())
 
-        d1=datetime.date.fromtimestamp(item["dt"])
-        dates.append(d1.strftime('%d %b'))
-            
-        sunrise.append( datetime.datetime.utcfromtimestamp(item["sunrise"]).strftime('%H:%M'))
-        sunset.append( datetime.datetime.utcfromtimestamp(item["sunset"]).strftime('%H:%M'))
-
-
-
     st.subheader("Temperatura Actual")
     col1, col2= st.columns(2)
     col1.metric("Temperatura",temp+temp_unit)
