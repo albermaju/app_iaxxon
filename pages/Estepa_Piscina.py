@@ -205,7 +205,6 @@ if city=="Estepa":
         cel=273.15
         
         for item in y["daily"]:
-            
             if unit=="Celsius":
                 maxtemp.append(round(item["temp"]["max"]-cel,2))
                 mintemp.append(round(item["temp"]["min"]-cel,2))
