@@ -255,7 +255,7 @@ try:
     col1, col2, col3= st.columns(3)
     col1.metric("",temp+temp_unit)
     with col2:
-        st.image(url_png, width=75)
+        st.image(url_png, width=80)
 
     st.subheader(" ")
 
