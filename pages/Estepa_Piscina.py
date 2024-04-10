@@ -243,7 +243,7 @@ try:
         st.plotly_chart(fig)
             
     icon=x["weather"][0]["icon"]
-    current_weather=x["weather"][0]["description"].title()
+    current_weather=x["weather"][0]["icon"].title()
         
     if unit=="Celsius":
         temp=str(round(x["main"]["temp"]-cel,2))
