@@ -309,12 +309,20 @@ st.markdown(
 
 st.markdown('''
     <style>
-    .element-container:nth-child(3) .overlayBtn {visibility: hidden;}
-    .element-container:nth-child(12) .overlayBtn {visibility: hidden;}
-    </style>
+    button[title="View fullscreen"] {
+    background-color: #004170cc;
+    right: 0;
+    color: white;
+    }
+
+    button[title="View fullscreen"]:hover {
+        background-color:  #004170;
+        color: white;
+        }
+    </styles>
     ''', 
     unsafe_allow_html=True
-    ) 
+) 
 
 with st.container():
     fig = px.line(df, x="Tiempo", y="TCAP",
