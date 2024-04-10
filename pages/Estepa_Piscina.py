@@ -254,7 +254,7 @@ try:
     st.subheader("Temperatura Actual")
     col1, col2= st.columns(2)
     col1.metric("Temperatura",temp+temp_unit)
-    col2.metric("Climatología",st.image(url_png, width=100))
+    col2.metric("Climatología",st.image(url_png, width=50))
 
     st.subheader(" ")
 
