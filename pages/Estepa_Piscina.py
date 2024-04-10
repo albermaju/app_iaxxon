@@ -255,7 +255,7 @@ try:
     col1, col2= st.columns(2)
     col1.metric("Temperatura",temp+temp_unit)
     with col2:
-        st.image(url_png, width=100)
+        st.image(url_png, width=75)
 
     st.subheader(" ")
 
