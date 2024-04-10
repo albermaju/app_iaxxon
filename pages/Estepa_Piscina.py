@@ -320,7 +320,7 @@ with st.container():
     fig = px.line(df, x="Tiempo", y="TCAP",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Captador')
-    st.plotly_chart(fig, use_container_width=True,theme=None, config=config)
+    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
     fig = px.line(df, x="Tiempo", y="TDAC",
