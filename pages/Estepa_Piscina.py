@@ -229,7 +229,8 @@ try:
             
         sunrise.append( datetime.datetime.utcfromtimestamp(item["sunrise"]).strftime('%H:%M'))
         sunset.append( datetime.datetime.utcfromtimestamp(item["sunset"]).strftime('%H:%M'))
-
+except Exception as e:
+    st.error(e)
 
 
 st.subheader("Temperatura Actual")
