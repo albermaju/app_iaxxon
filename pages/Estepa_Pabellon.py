@@ -55,6 +55,7 @@ custom_html = """
 st.components.v1.html(custom_html)
 st.title("Centro de Control")
 
+
 #######################################
 # INFLUXDB
 #######################################
