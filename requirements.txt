@@ -7,4 +7,4 @@ streamlit >= 1.32.2
 streamlit_extras == 0.4.2
 streamlit-toggle-switch == 1.0.2
 DateTime==4.3
-requests==2.25.1
+requests>=2.27
