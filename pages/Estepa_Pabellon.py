@@ -19,7 +19,7 @@ from pages.account import get_roles
 import streamlit_authenticator as stauth
 
 
-st.set_page_config(page_title="Centro de Control Iaxxon | Piscina de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
+st.set_page_config(page_title="Centro de Control Iaxxon | Pabellón de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
 
 if 'authentication_status' not in ss:
     st.switch_page('./pages/account.py')
@@ -56,7 +56,7 @@ custom_html = """
 """
 # Display the custom HTML
 st.components.v1.html(custom_html)
-st.title("Centro de Control | Piscina de Estepa")
+st.title("Centro de Control | Pabellón de Estepa")
 
 #######################################
 # INFLUXDB
