@@ -76,7 +76,9 @@ def get_data(time_period):
 
     # Obtener la fecha actual
     end_time = datetime.utcnow()
-
+    
+    if time_period == '1 hora':
+        start_time = '1h'
     if time_period == '1 día':
         start_time = '1d'
     elif time_period == '2 días':
@@ -85,6 +87,8 @@ def get_data(time_period):
         start_time = '7d'
     elif time_period == '1 mes':
         start_time = '30d'
+    elif time_period == '1 año':
+        start_time = '365d'
 
     # Formatear las fechas en el formato aceptado por InfluxDB
 
@@ -103,6 +107,8 @@ def get_kwh(time_period):
     # Obtener la fecha actual
     end_time = datetime.utcnow()
 
+    if time_period == '1 hora':
+        start_time = '1h'
     if time_period == '1 día':
         start_time = '1d'
     elif time_period == '2 días':
@@ -110,7 +116,9 @@ def get_kwh(time_period):
     elif time_period == '7 días':
         start_time = '7d'
     elif time_period == '1 mes':
-        start_time = '30d'
+        start_time = '31d'
+    elif time_period == '1 año':
+        start_time = '1y'
 
     # Formatear las fechas en el formato aceptado por InfluxDB
     
