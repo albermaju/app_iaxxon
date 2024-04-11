@@ -76,7 +76,7 @@ def get_data(time_period):
 
     # Obtener la fecha actual
     end_time = datetime.utcnow()
-    
+
     if time_period == '1 hora':
         start_time = '1h'
     if time_period == '1 día':
@@ -156,7 +156,7 @@ dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=que
 estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
 # Lista de opciones para el desplegable
-options = ['1 día', '2 días', '7 días', '1 mes']
+options = ['1 hora', '1 día', '2 días', '7 días', '1 mes', '1 año']
 
 # Desplegable para seleccionar el período de tiempo
 time_period = st.selectbox('Selecciona el período de tiempo:', options)
