@@ -4,15 +4,46 @@ cookie:
   name: some_cookie_name
 credentials:
   usernames:
-    jsmith:
-      email: jsmith@gmail.com
+    iaxxon:
+      email: alberto@iaxxon.com
       logged_in: false
-      name: John Smith
-      password: $2b$12$qgpdymNsKCf9Hjwg.NSXiO9/ItCdKVNoJBWQf6EAk9n73HgkAJmEC
+      name: Iaxxon Energía
+      password: iaxxon
+      role: admin
+    estepa:
+      email: concejaliadeportesestepa@gmail.com
+      logged_in: false
+      name: Ayto. Estepa
+      password: iaxxon
       role: estepa
-    rbriggs:
+    duplex:
       email: rbriggs@gmail.com
       logged_in: false
-      name: Rebecca Briggs
-      password: $2b$12$uON60sh.2IdIk4cka2YILuRo4kQai.pU8McK/owmmJ.QawK85GrdK
-      role: admin
+      name: Ayto. Estepa
+      password: iaxxon
+      role: duplex
+    colegiodobrasil:
+      email: dir@casadobrasil.es
+      logged_in: false
+      name: Colegio Do Brasil
+      password: iaxxon
+      role: colegiodobrasil
+    aguilardelafrontera:
+      email: deportes@aguilardelafrontera.es
+      logged_in: false
+      name: Ayto. Aguilar de la Frontera
+      password: iaxxon
+      role: aguilardelafrontera
+    priegodecordoba:
+      email: vicente.gallego@aytopriegodecordoba.es
+      logged_in: false
+      name: Ayto. Priego de Córdoba
+      password: iaxxon
+      role: priegodecordoba
+    bodegashabla:
+      email: jls@bodegashabla.com
+      logged_in: false
+      name: Bodegas Habla
+      password: iaxxon
+      role: bodegashabla
+
