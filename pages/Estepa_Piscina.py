@@ -132,7 +132,7 @@ with col1:
 	    position: relative;
 	    height: auto;
 	    min-height: 30px;
-	    max-height: 85px;
+	    max-height: 100px;
 	    overflow: hidden;
     }
     .banner img {
