@@ -37,10 +37,10 @@ custom_html = """
 </div>
 <style>
     .banner {
-	    margin: 30px auto;
+	    margin: 30px;
 	    width: 40%;
-	    min-width: 23px;
-	    max-width: 33px;
+	    min-width: 50px;
+	    max-width: 100px;
 	    position: relative;
 	    height: auto;
 	    min-height: 30px;
@@ -48,7 +48,7 @@ custom_html = """
 	    overflow: hidden;
     }
     .banner img {
-	    max-width : 33px;
+	    max-width : 50px;
 	    width: 100%;
 	    position: absolute;
     }
