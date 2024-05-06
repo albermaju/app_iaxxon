@@ -306,7 +306,7 @@ with col3:
         track_color="#008f39",  # optional
     )
 
-st.title("Gráficas")
+st.header("Gráficas")
 config = {'displayModeBar': False}
 st.markdown(
     """
