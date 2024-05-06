@@ -128,7 +128,7 @@ with col1:
         margin-bottom: 15px;
 	    width: 100%;
 	    min-width: 100px;
-	    max-width: 120px;
+	    max-width: 135px;
 	    position: relative;
 	    height: auto;
 	    min-height: 30px;
@@ -136,7 +136,7 @@ with col1:
 	    overflow: hidden;
     }
     .banner img {
-	    max-width : 120px;
+	    max-width : 135px;
 	    width: 100%;
 	    position: absolute;
     }
