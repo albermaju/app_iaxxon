@@ -70,6 +70,7 @@ def MenuButtons(user_roles=None):
             Page6Nav()
             Page7Nav()
             Page8Nav()
+            Page9Nav()
         elif ss.username in estepa:
             Page1Nav()
             Page2Nav()
