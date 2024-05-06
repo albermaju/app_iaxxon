@@ -39,16 +39,16 @@ custom_html = """
     .banner {
 	    margin: 30px auto;
 	    width: 40%;
-	    min-width: 230px;
-	    max-width: 330px;
+	    min-width: 23px;
+	    max-width: 33px;
 	    position: relative;
 	    height: auto;
-	    min-height: 300px;
-	    max-height: 500px;
+	    min-height: 30px;
+	    max-height: 50px;
 	    overflow: hidden;
     }
     .banner img {
-	    max-width : 330px;
+	    max-width : 33px;
 	    width: 100%;
 	    position: absolute;
     }
