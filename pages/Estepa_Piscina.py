@@ -38,12 +38,12 @@ custom_html = """
 <style>
     .banner {
 	    margin: 0px;
-	    width: 40%;
+	    width: 20%;
 	    min-width: 100px;
 	    max-width: 150px;
 	    position: relative;
 	    height: auto;
-	    min-height: 10px;
+	    min-height: 100px;
 	    max-height: 150px;
 	    overflow: hidden;
     }
