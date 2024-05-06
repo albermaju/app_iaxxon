@@ -41,11 +41,11 @@ with col1:
         .banner {
 	        margin: 0px;
 	        width: 30%;
-	        min-width: 70px;
-	        max-width: 100px;
+	        min-width: 50px;
+	        max-width: 75px;
 	        position: relative;
 	        height: auto;
-	        min-height: 100px;
+	        min-height: 75px;
 	        max-height: 150px;
 	        overflow: hidden;
         }
