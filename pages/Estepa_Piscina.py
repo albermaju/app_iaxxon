@@ -180,7 +180,7 @@ df.rename(columns = {'_time':'Tiempo'}, inplace = True)
 # DISEÑO PÁGINA STREAMLIT
 #######################################
 
-st.title("Estado Actual")
+st.subheader("Estado Actual")
 
 #######################################
 # API TIEMPO
