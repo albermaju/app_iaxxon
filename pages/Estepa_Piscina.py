@@ -37,10 +37,10 @@ custom_html = """
 </div>
 <style>
     .banner {
-	    margin: 30px;
+	    margin: 80px;
 	    width: 40%;
-	    min-width: 50px;
-	    max-width: 100px;
+	    min-width: 100px;
+	    max-width: 150px;
 	    position: relative;
 	    height: auto;
 	    min-height: 30px;
