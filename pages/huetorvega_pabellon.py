@@ -133,7 +133,7 @@ st.components.v1.html(
     // Adjust sizes
     outputsize();
     decoration.style.height = "3.0rem";
-    decoration.style.right = "100px";
+    decoration.style.right = "10px";
 
     // Adjust image decorations
     decoration.style.backgroundImage = "url(https://img.pokemondb.net/sprites/emerald/normal/pikachu.png)";
