@@ -56,11 +56,16 @@ with col1:
         }
         </style>
         """
+    # Display the custom HTML
     st.components.v1.html(custom_html)
 
 with col2:
-    # Display the custom HTML
     st.subheader("Piscina de Estepa")
+    # Lista de opciones para el desplegable
+    options = ['1 hora', '1 día', '2 días', '7 días', '1 mes', '1 año']
+
+    # Desplegable para seleccionar el período de tiempo
+    time_period = st.selectbox('Selecciona el período de tiempo:', options)
 
 #######################################
 # INFLUXDB
@@ -159,11 +164,7 @@ estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la s
 dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
 estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
-# Lista de opciones para el desplegable
-options = ['1 hora', '1 día', '2 días', '7 días', '1 mes', '1 año']
 
-# Desplegable para seleccionar el período de tiempo
-time_period = st.selectbox('Selecciona el período de tiempo:', options)
 df = get_data(time_period)
 df2 = get_kwh(time_period)
 
