@@ -124,7 +124,8 @@ with col1:
     </div>
     <style>
     .banner {
-	    margin: 5px 0;
+	    margin: 0px;
+        margin-bottom: 20px;
 	    width: 100%;
 	    min-width: 110px;
 	    max-width: 140px;
@@ -135,7 +136,7 @@ with col1:
 	    overflow: hidden;
     }
     .banner img {
-	    max-width : 1px;
+	    max-width : 140px;
 	    width: 100%;
 	    position: absolute;
     }
