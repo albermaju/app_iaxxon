@@ -46,4 +46,10 @@ credentials:
       name: Bodegas Habla
       password: iaxxon
       role: bodegashabla
+    huetorvega:
+      email: s.garcia@huetorvega.com
+      logged_in: false
+      name: Húetor Vega
+      password: huetorvega
+      role: huetorvega
 

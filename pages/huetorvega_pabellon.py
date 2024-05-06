@@ -29,7 +29,7 @@ MenuButtons(get_roles())
 #######################################
 # API TIEMPO
 #######################################
-city="Estepa"
+city="Granada"
 unit="Celsius"
 speed="Kilometre/hour"
 temp_unit=" °C"
@@ -153,7 +153,7 @@ with col1:
     time_period = st.selectbox('Selecciona el período de tiempo:', options)
 
 with col2:
-    st.subheader("Piscina de Estepa")
+    st.subheader("Pabellón de Huétor Vega")
     st.metric(f"Clima en {city}",temp+temp_unit)
 
 with col3:
@@ -361,4 +361,3 @@ with st.container():
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Depósito Agua Fría')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
-    

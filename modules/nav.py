@@ -29,6 +29,9 @@ def Page7Nav():
 def Page8Nav():
     st.sidebar.page_link("pages/pabellon_aguilar.py", label="Pabellón Aguilar de la Ftra.")
 
+def Pag9Nav():
+    st.sidebar.page_link("pages/huetorvega_pabellon.py", label="Pabellón Huétor Vega")
+
 
 
 
@@ -54,6 +57,8 @@ def MenuButtons(user_roles=None):
         aguilardelafrontera = [k for k, v in user_roles.items() if v == 'aguilardelafrontera']
         priegodecordoba = [k for k, v in user_roles.items() if v == 'priegodecordoba']
         bodegashabla = [k for k, v in user_roles.items() if v == 'bodegashabla']
+        huetorvega = [k for k, v in user_roles.items() if v == 'huetorvega']
+
 
         # Show page 1 if the username that logged in is an admin.
         if ss.username in admins:
@@ -79,4 +84,6 @@ def MenuButtons(user_roles=None):
             Page7Nav()
         elif ss.username in bodegashabla:
             Page5Nav()
+        elif ss.username in huetorvega:
+            Page9Nav()
 
