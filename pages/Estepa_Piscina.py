@@ -135,7 +135,7 @@ with col1:
 	        overflow: hidden;
         }
         .banner img {
-	        max-width : 75px;
+	        max-width : 50px;
 	        width: 100%;
 	        position: absolute;
         }
