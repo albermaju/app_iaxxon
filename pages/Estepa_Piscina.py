@@ -126,8 +126,8 @@ with col1:
     .banner {
 	    margin: 0px;
 	    width: 100%;
-	    min-width: 50px;
-	    max-width: 75px;
+	    min-width: 75px;
+	    max-width: 100px;
 	    position: relative;
 	    height: auto;
 	    min-height: 30px;
@@ -141,7 +141,7 @@ with col1:
     }
     </style>
     """
-    
+
     # Display the custom HTML
     st.markdown(custom_html, unsafe_allow_html=True)
     # Lista de opciones para el desplegable
