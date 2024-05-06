@@ -34,31 +34,32 @@ col1, col2 = st.columns(2)
 with col1:
     # Custom HTML/CSS for the banner
     custom_html = """
-    <div class="banner">
-    <img src="https://i.imgur.com/SJQWq0F.png" alt="Banner Image">
-    </div>
-    <style>
-    .banner {
-	    margin: 0px;
-	    width: 20%;
-	    min-width: 100px;
-	    max-width: 150px;
-	    position: relative;
-	    height: auto;
-	    min-height: 100px;
-	    max-height: 150px;
-	    overflow: hidden;
-    }
-    .banner img {
-	    max-width : 100px;
-	    width: 100%;
-	    position: absolute;
-    }
-    </style>
-    """
+        <div class="banner">
+        <img src="https://i.imgur.com/SJQWq0F.png" alt="Banner Image">
+        </div>
+        <style>
+        .banner {
+	        margin: 0px;
+	        width: 20%;
+	        min-width: 100px;
+	        max-width: 150px;
+	        position: relative;
+	        height: auto;
+	        min-height: 100px;
+	        max-height: 150px;
+	        overflow: hidden;
+        }
+        .banner img {
+	        max-width : 100px;
+	        width: 100%;
+	        position: absolute;
+        }
+        </style>
+        """
+    st.components.v1.html(custom_html)
+
 with col2:
     # Display the custom HTML
-    st.components.v1.html(custom_html)
     st.subheader("Centro de Control | Piscina de Estepa")
 
 #######################################
