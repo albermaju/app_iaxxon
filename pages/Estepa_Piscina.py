@@ -119,28 +119,20 @@ col1, col2, col3 = st.columns(3)
 with col1:
     # Custom HTML/CSS for the banner
     custom_html = """
-        <div class="banner">
-        <img src="https://i.imgur.com/SJQWq0F.png" alt="Banner Image">
-        </div>
-        <style>
+    <div class="banner">
+        <img src="https://i.imgur.com/SJQWq0F.png" alt="Banner Image" style="max-width: 50px; max-height: 50px;">
+    </div>
+    <style>
         .banner {
-	        margin: 0px;
-	        width: 100%;
-	        min-width: 50px;
-	        max-width: 75px;
-	        position: relative;
-	        height: auto;
-	        min-height: 30px;
-	        max-height: 75px;
-	        overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 10px;
+            z-index: 1000; /* Asegura que esté sobre otros elementos */
         }
-        .banner img {
-	        max-width : 100px;
-	        width: 100%;
-	        position: absolute;
-        }
-        </style>
-        """
+    </style>
+    """
+    
     # Display the custom HTML
     st.components.v1.html(custom_html)
     # Lista de opciones para el desplegable
