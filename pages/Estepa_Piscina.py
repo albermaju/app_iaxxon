@@ -124,7 +124,7 @@ with col1:
     </div>
     <style>
     .banner {
-	    margin: 10px 0;
+	    margin: 5px 0;
 	    width: 100%;
 	    min-width: 110px;
 	    max-width: 140px;
