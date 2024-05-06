@@ -116,29 +116,18 @@ except KeyError:
 #######################################
 st.components.v1.html(
     """
-    <script>
-    // Modify the decoration on top to reuse as a banner
-
-    // Locate elements
-    var decoration = window.parent.document.querySelectorAll('[data-testid="stDecoration"]')[0];
-    var sidebar = window.parent.document.querySelectorAll('[data-testid="stSidebar"]')[0];
-
-    // Observe sidebar size
-    function outputsize() {
-        decoration.style.left = `${sidebar.offsetWidth}px`;
+    <style>
+    .center-image {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-
-    new ResizeObserver(outputsize).observe(sidebar);
-
-    // Adjust sizes
-    outputsize();
-    decoration.style.height = "7.0rem";
-    decoration.style.right = "1px";
-
-    // Adjust image decorations
-    decoration.style.backgroundImage = "url(https://img.pokemondb.net/sprites/emerald/normal/pikachu.png)";
-    decoration.style.backgroundSize = "contain";
-    </script>        
+    </style>
+    <div class="center-image">
+        <img src="https://img.pokemondb.net/sprites/emerald/normal/pikachu.png" style="max-width: 100%; max-height: 100%;">
+    </div>
     """, width=0, height=0)
 
 col1, col2, col3 = st.columns(3)
