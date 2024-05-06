@@ -43,8 +43,8 @@ custom_html = """
 	    max-width: 150px;
 	    position: relative;
 	    height: auto;
-	    min-height: 30px;
-	    max-height: 50px;
+	    min-height: 50px;
+	    max-height: 80px;
 	    overflow: hidden;
     }
     .banner img {
