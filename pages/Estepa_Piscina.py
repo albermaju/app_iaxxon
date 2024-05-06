@@ -50,7 +50,7 @@ with col1:
 	        overflow: hidden;
         }
         .banner img {
-	        max-width : 50px;
+	        max-width : 75px;
 	        width: 100%;
 	        position: absolute;
         }
