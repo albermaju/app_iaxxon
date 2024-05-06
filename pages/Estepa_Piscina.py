@@ -60,7 +60,7 @@ with col1:
 
 with col2:
     # Display the custom HTML
-    st.subheader("Centro de Control | Piscina de Estepa")
+    st.subheader("Piscina de Estepa")
 
 #######################################
 # INFLUXDB
