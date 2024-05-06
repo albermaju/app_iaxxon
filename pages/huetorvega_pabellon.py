@@ -132,7 +132,7 @@ st.components.v1.html(
 
     // Adjust sizes
     outputsize();
-    decoration.style.height = "3.0rem";
+    decoration.style.height = "1.0rem";
     decoration.style.right = "1px";
 
     // Adjust image decorations
