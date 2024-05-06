@@ -155,8 +155,8 @@ with col2:
 
 with col3:
     st.subheader("Estado Actual")
-        st.image(url_png, width=80)
-        st.subheader(" ")
+    st.image(url_png, width=80)
+    st.subheader(" ")
         
 #######################################
 # INFLUXDB
