@@ -40,9 +40,9 @@ with col1:
         <style>
         .banner {
 	        margin: 0px;
-	        width: 20%;
-	        min-width: 100px;
-	        max-width: 150px;
+	        width: 30%;
+	        min-width: 70px;
+	        max-width: 100px;
 	        position: relative;
 	        height: auto;
 	        min-height: 100px;
@@ -50,7 +50,7 @@ with col1:
 	        overflow: hidden;
         }
         .banner img {
-	        max-width : 100px;
+	        max-width : 50px;
 	        width: 100%;
 	        position: absolute;
         }
