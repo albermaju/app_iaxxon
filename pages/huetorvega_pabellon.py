@@ -118,10 +118,10 @@ st.markdown(
     """
     <style>
     .reportview-container {
-        background: url("https://images.app.goo.gl/LFCobouKtT7oZ7Qv7")
+        background: url("https://i.imgur.com/SJQWq0F.png")
     }
    .sidebar .sidebar-content {
-        background: url("https://images.app.goo.gl/LFCobouKtT7oZ7Qv7")
+        background: url("https://i.imgur.com/SJQWq0F.png")
     }
     </style>
     """,
