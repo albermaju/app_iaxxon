@@ -126,8 +126,8 @@ with col1:
     .banner {
 	    margin: 0px;
 	    width: 100%;
-	    min-width: 75px;
-	    max-width: 100px;
+	    min-width: 100px;
+	    max-width: 120px;
 	    position: relative;
 	    height: auto;
 	    min-height: 30px;
