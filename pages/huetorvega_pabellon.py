@@ -120,7 +120,7 @@ st.components.v1.html(
     .center-image {
         width: 100%;
         height: 100%;
-        display: flex;
+        display: absolute;
         justify-content: center;
         align-items: center;
     }
