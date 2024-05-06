@@ -43,7 +43,7 @@ custom_html = """
 	    max-width: 150px;
 	    position: relative;
 	    height: auto;
-	    min-height: 100px;
+	    min-height: 10px;
 	    max-height: 150px;
 	    overflow: hidden;
     }
