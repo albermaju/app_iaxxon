@@ -114,6 +114,25 @@ except KeyError:
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
+custom_html1 = """
+<div class="banner">
+    <img src="https://img.freepik.com/premium-photo/wide-banner-with-many-random-square-hexagons-charcoal-dark-black-color_105589-1820.jpg" alt="Banner Image">
+</div>
+<style>
+    .banner {
+        width: 160%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .banner img {
+        width: 100%;
+        object-fit: cover;
+    }
+</style>
+"""
+# Display the custom HTML
+st.components.v1.html(custom_html1)
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
