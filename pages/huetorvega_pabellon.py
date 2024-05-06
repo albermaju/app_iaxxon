@@ -126,7 +126,7 @@ st.components.v1.html(
     }
     </style>
     <div class="center-image">
-        <img src="https://i.imgur.com/SJQWq0F.png" style="max-width: 50%; max-height: 50%;">
+        <img src="https://i.imgur.com/SJQWq0F.png" style="max-width: 100%; max-height: 100%;">
     </div>
     """, width=0, height=0)
 
