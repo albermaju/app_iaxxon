@@ -128,7 +128,7 @@ with col1:
         margin-bottom: 20px;
 	    width: 100%;
 	    min-width: 100px;
-	    max-width: 135px;
+	    max-width: 140px;
 	    position: relative;
 	    height: auto;
 	    min-height: 30px;
