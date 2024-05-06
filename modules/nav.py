@@ -29,7 +29,7 @@ def Page7Nav():
 def Page8Nav():
     st.sidebar.page_link("pages/pabellon_aguilar.py", label="Pabellón Aguilar de la Ftra.")
 
-def Pag9Nav():
+def Page9Nav():
     st.sidebar.page_link("pages/huetorvega_pabellon.py", label="Pabellón Huétor Vega")
 
 
