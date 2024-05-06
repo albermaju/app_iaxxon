@@ -130,12 +130,12 @@ with col1:
 	        max-width: 75px;
 	        position: relative;
 	        height: auto;
-	        min-height: 75px;
+	        min-height: 40px;
 	        max-height: 150px;
 	        overflow: hidden;
         }
         .banner img {
-	        max-width : 50px;
+	        max-width : 100px;
 	        width: 100%;
 	        position: absolute;
         }
