@@ -56,7 +56,7 @@ custom_html = """
 """
 # Display the custom HTML
 st.components.v1.html(custom_html)
-st.title("Centro de Control | Piscina de Estepa")
+st.header("Centro de Control | Piscina de Estepa")
 
 #######################################
 # INFLUXDB
