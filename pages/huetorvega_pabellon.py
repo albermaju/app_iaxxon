@@ -114,21 +114,29 @@ except KeyError:
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
-st.components.v1.html(
+st.markdown(
     """
     <style>
     .center-image {
         width: 100%;
         height: 100%;
-        display: absolute;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
     </style>
+    """
+    , unsafe_allow_html=True
+)
+
+st.markdown(
+    """
     <div class="center-image">
         <img src="https://img.pokemondb.net/sprites/emerald/normal/pikachu.png" style="max-width: 100%; max-height: 100%;">
     </div>
-    """, width=0, height=0)
+    """
+    , unsafe_allow_html=True
+)
 
 col1, col2, col3 = st.columns(3)
 
