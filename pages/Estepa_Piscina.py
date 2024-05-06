@@ -152,7 +152,7 @@ with col1:
 
 with col2:
     st.subheader("Piscina de Estepa")
-    st.metric("",temp+temp_unit)
+    st.metric(f"Clima en {city}",temp+temp_unit)
 
 with col3:
     st.subheader("Estado Actual")
@@ -306,7 +306,7 @@ with col3:
         track_color="#008f39",  # optional
     )
 
-st.header("Gráficas")
+st.subheader("Gráficas")
 config = {'displayModeBar': False}
 st.markdown(
     """
