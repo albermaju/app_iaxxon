@@ -19,7 +19,7 @@ from pages.account import get_roles
 import streamlit_authenticator as stauth
 
 
-st.set_page_config(page_subheader="Centro de Control Iaxxon | Piscina de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
+st.set_page_config(page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
 
 if 'authentication_status' not in ss:
     st.switch_page('./pages/account.py')
