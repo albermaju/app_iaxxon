@@ -29,13 +29,15 @@ MenuButtons(get_roles())
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
+col1, col2 = st.columns(2)
 
-# Custom HTML/CSS for the banner
-custom_html = """
-<div class="banner">
+with col1:
+    # Custom HTML/CSS for the banner
+    custom_html = """
+    <div class="banner">
     <img src="https://i.imgur.com/SJQWq0F.png" alt="Banner Image">
-</div>
-<style>
+    </div>
+    <style>
     .banner {
 	    margin: 0px;
 	    width: 20%;
@@ -52,11 +54,12 @@ custom_html = """
 	    width: 100%;
 	    position: absolute;
     }
-</style>
-"""
-# Display the custom HTML
-st.components.v1.html(custom_html)
-st.subheader("Centro de Control | Piscina de Estepa")
+    </style>
+    """
+with col2:
+    # Display the custom HTML
+    st.components.v1.html(custom_html)
+    st.subheader("Centro de Control | Piscina de Estepa")
 
 #######################################
 # INFLUXDB
