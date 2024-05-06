@@ -131,7 +131,7 @@ with col1:
 	    max-width: 140px;
 	    position: relative;
 	    height: auto;
-	    min-height: 30px;
+	    min-height: 40px;
 	    max-height: 100px;
 	    overflow: hidden;
     }
