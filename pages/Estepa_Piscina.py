@@ -132,9 +132,9 @@ with col1:
         }
     </style>
     """
-    
+
     # Display the custom HTML
-    st.components.v1.html(custom_html)
+    st.markdown(custom_html, unsafe_allow_html=True)
     # Lista de opciones para el desplegable
     options = ['1 hora', '1 día', '2 días', '7 días', '1 mes', '1 año']
 
