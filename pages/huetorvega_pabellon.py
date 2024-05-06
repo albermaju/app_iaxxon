@@ -114,21 +114,19 @@ except KeyError:
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
-st.components.v1.html(
+st.markdown(
     """
     <style>
-    .center-image {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .reportview-container {
+        background: url("https://images.app.goo.gl/LFCobouKtT7oZ7Qv7")
+    }
+   .sidebar .sidebar-content {
+        background: url("https://images.app.goo.gl/LFCobouKtT7oZ7Qv7")
     }
     </style>
-    <div class="center-image">
-        <img src="https://i.imgur.com/SJQWq0F.png" style="max-width: 100%; max-height: 100%;">
-    </div>
-    """, width=0, height=0)
+    """,
+    unsafe_allow_html=True
+)
 
 col1, col2, col3 = st.columns(3)
 
