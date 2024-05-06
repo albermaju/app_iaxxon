@@ -114,19 +114,6 @@ except KeyError:
 #######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
-st.markdown(
-    """
-    <style>
-    .reportview-container {
-        background: url("https://i.imgur.com/SJQWq0F.png")
-    }
-   .sidebar .sidebar-content {
-        background: url("https://i.imgur.com/SJQWq0F.png")
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 col1, col2, col3 = st.columns(3)
 
