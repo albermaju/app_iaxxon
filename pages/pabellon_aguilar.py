@@ -153,7 +153,7 @@ with col1:
     time_period = st.selectbox('Selecciona el período de tiempo:', options)
 
 with col2:
-    st.subheader("Piscina de Estepa")
+    st.subheader("Pabellón Aguilar de la Ftra.")
     st.metric(f"Clima en {city}",temp+temp_unit)
 
 with col3:
@@ -227,7 +227,7 @@ def get_kwh(time_period):
     
     # Construir la consulta   
     query_api = client.query_api()
-    query = f'''from(bucket: "Estepa_Piscina_v3")\
+    query = f'''from(bucket: "Iaxxon_Aguilar_Pabellon_v2")\
     |> range(start: -{start_time})\
     |> filter(fn: (r) => r["_measurement"] == "prueba")\
     |> filter(fn: (r) => r["_field"] == "TINT" or r["_field"] == "pump" or r["_field"] == "TDAF")\
@@ -240,13 +240,13 @@ def get_kwh(time_period):
     return result
 
 query_api = client.query_api()
-query_fan = f'''from(bucket: "Estepa_Piscina_v3")\
+query_fan = f'''from(bucket: "Iaxxon_Aguilar_Pabellon_v2")\
     |> range(start: -24h)\
     |> filter(fn: (r) => r["_field"] == "fan")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")'''
 
-query_pump = f'''from(bucket: "Estepa_Piscina_v3")\
+query_pump = f'''from(bucket: "Iaxxon_Aguilar_Pabellon_v2")\
     |> range(start: -24h)\
     |> filter(fn: (r) => r["_field"] == "pump")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
