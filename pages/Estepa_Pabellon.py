@@ -198,7 +198,7 @@ def get_data(time_period):
 
     # Construir la consulta   
     query_api = client.query_api()
-    query= f'from (bucket: "Estepa_Piscina_v3")\
+    query= f'from (bucket: "Estepa_Pabellon")\
     |> range(start: -{start_time})\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'
 
