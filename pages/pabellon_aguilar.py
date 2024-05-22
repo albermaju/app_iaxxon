@@ -29,7 +29,7 @@ MenuButtons(get_roles())
 #######################################
 # API TIEMPO
 #######################################
-city="Estepa"
+city="Aguilar de la frontera"
 unit="Celsius"
 speed="Kilometre/hour"
 temp_unit=" °C"
