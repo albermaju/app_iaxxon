@@ -19,7 +19,7 @@ from pages.account import get_roles
 import streamlit_authenticator as stauth
 
 
-st.set_page_config(page_title="Centro de Control Iaxxon | Piscina de Estepa", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide")
+st.set_page_config(layout="wide")
 
 if 'authentication_status' not in ss:
     st.switch_page('./pages/account.py')
@@ -27,37 +27,140 @@ if 'authentication_status' not in ss:
 MenuButtons(get_roles())
 
 #######################################
+# API TIEMPO
+#######################################
+city="Estepa"
+unit="Celsius"
+speed="Kilometre/hour"
+temp_unit=" °C"
+wind_unit=" km/h"
+
+api="9b833c0ea6426b70902aa7a4b1da285c"
+url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api}"
+response=requests.get(url)
+x=response.json()
+
+try:
+    lon=x["coord"]["lon"]
+    lat=x["coord"]["lat"]
+    ex="current,minutely,hourly"
+    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&lang=sp&appid={api}'
+    res=requests.get(url2)
+    y=res.json()
+
+    maxtemp=[]
+    mintemp=[]
+    pres=[]
+    humd=[]
+    wspeed=[]
+    desc=[]
+    cloud=[]
+    rain=[]
+    dates=[]
+    sunrise=[]
+    sunset=[]
+    cel=273.15
+            
+    for item in y["daily"]:
+        if unit=="Celsius":
+            maxtemp.append(round(item["temp"]["max"]-cel,2))
+            mintemp.append(round(item["temp"]["min"]-cel,2))
+        else:
+            maxtemp.append(round((((item["temp"]["max"]-cel)*1.8)+32),2))
+            mintemp.append(round((((item["temp"]["min"]-cel)*1.8)+32),2))
+
+        if wind_unit=="m/s":
+            wspeed.append(str(round(item["wind_speed"],1))+wind_unit)
+        else:
+            wspeed.append(str(round(item["wind_speed"]*3.6,1))+wind_unit)
+
+        pres.append(item["pressure"])
+        humd.append(str(item["humidity"])+' %')
+                
+        cloud.append(str(item["clouds"])+' %')
+        rain.append(str(int(item["pop"]*100))+'%')
+
+        desc.append(item["weather"][0]["description"].title())
+
+    def bargraph():
+        fig=go.Figure(data=
+            [
+            go.Bar(name="Maximum",x=dates,y=maxtemp,marker_color='crimson'),
+            go.Bar(name="Minimum",x=dates,y=mintemp,marker_color='navy')
+            ])
+        fig.update_layout(xaxis_title="Dates",yaxis_title="Temperature",barmode='group',margin=dict(l=70, r=10, t=80, b=80),font=dict(color="white"))
+        st.plotly_chart(fig)
+            
+    def linegraph():
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=dates, y=mintemp, name='Minimum '))
+        fig.add_trace(go.Scatter(x=dates, y=maxtemp, name='Maximimum ',marker_color='crimson'))
+        fig.update_layout(xaxis_title="Dates",yaxis_title="Temperature",font=dict(color="white"))
+        st.plotly_chart(fig)
+                
+    icon=x["weather"][0]["icon"]
+    current_weather=x["weather"][0]["description"].title()
+            
+    if unit=="Celsius":
+        temp=str(round(x["main"]["temp"]-cel,2))
+    else:
+        temp=str(round((((x["main"]["temp"]-cel)*1.8)+32),2))
+
+    url_png = f'http://openweathermap.org/img/w/{icon}.png'
+
+except KeyError:
+    st.error("¡Ciudad no encontrada!")
+
+#######################################
 # CONFIGURACIÓN DE PÁGINA
 #######################################
+col1, col2, col3 = st.columns(3)
 
-# Custom HTML/CSS for the banner
-custom_html = """
-<div class="banner">
-    <img src="https://i.imgur.com/SJQWq0F.png" alt="Banner Image">
-</div>
-<style>
+with col1:
+    # Custom HTML/CSS for the banner
+    custom_html = """
+    <div class="banner">
+        <img src="https://i.imgur.com/SJQWq0F.png" alt="Banner Image">
+    </div>
+    <style>
     .banner {
-	    margin: 30px auto;
-	    width: 40%;
-	    min-width: 230px;
-	    max-width: 330px;
+	    margin: 0px;
+        margin-bottom: 20px;
+	    width: 100%;
+	    min-width: 110px;
+	    max-width: 140px;
 	    position: relative;
 	    height: auto;
-	    min-height: 300px;
-	    max-height: 500px;
+	    min-height: 40px;
+	    max-height: 100px;
 	    overflow: hidden;
     }
     .banner img {
-	    max-width : 330px;
+	    max-width : 140px;
+	    max-width : 140px;
 	    width: 100%;
 	    position: absolute;
     }
-</style>
-"""
-# Display the custom HTML
-st.components.v1.html(custom_html)
-st.title("Centro de Control | Piscina de Estepa")
+    </style>
+    """
 
+    # Display the custom HTML
+    st.markdown(custom_html, unsafe_allow_html=True)
+    # Lista de opciones para el desplegable
+    options = ['1 hora', '1 día', '2 días', '7 días', '1 mes', '1 año']
+
+    # Desplegable para seleccionar el período de tiempo
+    time_period = st.selectbox('Selecciona el período de tiempo:', options)
+
+with col2:
+    st.subheader("Piscina de Estepa")
+    st.metric(f"Clima en {city}",temp+temp_unit)
+
+with col3:
+    st.subheader("Estado Actual")
+    st.image(url_png, width=80)
+    st.subheader(" ")
+        
 #######################################
 # INFLUXDB
 #######################################
@@ -155,11 +258,7 @@ estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la s
 dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
 estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
-# Lista de opciones para el desplegable
-options = ['1 hora', '1 día', '2 días', '7 días', '1 mes', '1 año']
 
-# Desplegable para seleccionar el período de tiempo
-time_period = st.selectbox('Selecciona el período de tiempo:', options)
 df = get_data(time_period)
 df2 = get_kwh(time_period)
 
@@ -175,100 +274,7 @@ df.rename(columns = {'_time':'Tiempo'}, inplace = True)
 # DISEÑO PÁGINA STREAMLIT
 #######################################
 
-st.title("Estado Actual")
 
-#######################################
-# API TIEMPO
-#######################################
-
-city="Estepa"
-unit="Celsius"
-speed="Kilometre/hour"
-temp_unit=" °C"
-wind_unit=" km/h"
-
-api="9b833c0ea6426b70902aa7a4b1da285c"
-url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api}"
-response=requests.get(url)
-x=response.json()
-
-try:
-    lon=x["coord"]["lon"]
-    lat=x["coord"]["lat"]
-    ex="current,minutely,hourly"
-    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&lang=sp&appid={api}'
-    res=requests.get(url2)
-    y=res.json()
-
-    maxtemp=[]
-    mintemp=[]
-    pres=[]
-    humd=[]
-    wspeed=[]
-    desc=[]
-    cloud=[]
-    rain=[]
-    dates=[]
-    sunrise=[]
-    sunset=[]
-    cel=273.15
-        
-    for item in y["daily"]:
-        if unit=="Celsius":
-            maxtemp.append(round(item["temp"]["max"]-cel,2))
-            mintemp.append(round(item["temp"]["min"]-cel,2))
-        else:
-            maxtemp.append(round((((item["temp"]["max"]-cel)*1.8)+32),2))
-            mintemp.append(round((((item["temp"]["min"]-cel)*1.8)+32),2))
-
-        if wind_unit=="m/s":
-            wspeed.append(str(round(item["wind_speed"],1))+wind_unit)
-        else:
-            wspeed.append(str(round(item["wind_speed"]*3.6,1))+wind_unit)
-
-        pres.append(item["pressure"])
-        humd.append(str(item["humidity"])+' %')
-            
-        cloud.append(str(item["clouds"])+' %')
-        rain.append(str(int(item["pop"]*100))+'%')
-
-        desc.append(item["weather"][0]["description"].title())
-
-    def bargraph():
-        fig=go.Figure(data=
-            [
-            go.Bar(name="Maximum",x=dates,y=maxtemp,marker_color='crimson'),
-            go.Bar(name="Minimum",x=dates,y=mintemp,marker_color='navy')
-            ])
-        fig.update_layout(xaxis_title="Dates",yaxis_title="Temperature",barmode='group',margin=dict(l=70, r=10, t=80, b=80),font=dict(color="white"))
-        st.plotly_chart(fig)
-        
-    def linegraph():
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(x=dates, y=mintemp, name='Minimum '))
-        fig.add_trace(go.Scatter(x=dates, y=maxtemp, name='Maximimum ',marker_color='crimson'))
-        fig.update_layout(xaxis_title="Dates",yaxis_title="Temperature",font=dict(color="white"))
-        st.plotly_chart(fig)
-            
-    icon=x["weather"][0]["icon"]
-    current_weather=x["weather"][0]["description"].title()
-        
-    if unit=="Celsius":
-        temp=str(round(x["main"]["temp"]-cel,2))
-    else:
-        temp=str(round((((x["main"]["temp"]-cel)*1.8)+32),2))
-
-    url_png = f'http://openweathermap.org/img/w/{icon}.png'
-    
-    col1, col2, col3= st.columns(3)
-    col1.metric(f"Clima en {city}",temp+temp_unit)
-    with col2:
-        st.image(url_png, width=80)
-
-    st.subheader(" ")
-
-except KeyError:
-    st.error("¡Ciudad no encontrada!")
 
 col1, col2, col3 = st.columns(3)
 
@@ -302,7 +308,7 @@ with col3:
         track_color="#008f39",  # optional
     )
 
-st.title("Gráficas")
+st.subheader("Gráficas")
 config = {'displayModeBar': False}
 st.markdown(
     """
@@ -355,4 +361,3 @@ with st.container():
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Depósito Agua Fría')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
-    

@@ -153,7 +153,7 @@ with col1:
     time_period = st.selectbox('Selecciona el período de tiempo:', options)
 
 with col2:
-    st.subheader("Piscina de Estepa")
+    st.subheader("Pabellón Aguilar de la Ftra.")
     st.metric(f"Clima en {city}",temp+temp_unit)
 
 with col3:
