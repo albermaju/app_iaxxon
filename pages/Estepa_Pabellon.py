@@ -262,7 +262,7 @@ estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie
 df = get_data(time_period)
 df2 = get_kwh(time_period)
 
-to_drop = ['result', 'table', '_measurement', 'tag1', 'tag2']
+to_drop = ['result', 'table', '_measurement']
 df.drop(to_drop, inplace=True, axis=1)
 df['TCAP']=df['TCAP'].round(2)
 df['TDAC']=df['TDAC'].round(2)
