@@ -241,7 +241,7 @@ def get_kwh(time_period):
 
 query_api = client.query_api()
 query_fan = f'''from(bucket: "Estepa_Pabellon")\
-    |> range(start: -24h)\
+    |> range(start: -15m)\
     |> filter(fn: (r) => r["_field"] == "fan")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")'''
