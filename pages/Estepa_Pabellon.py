@@ -247,7 +247,7 @@ query_fan = f'''from(bucket: "Estepa_Pabellon")\
     |> yield(name: "last")'''
 
 query_pump = f'''from(bucket: "Estepa_Pabellon")\
-    |> range(start: -24h)\
+    |> range(start: -15h)\
     |> filter(fn: (r) => r["_field"] == "pump")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")'''
