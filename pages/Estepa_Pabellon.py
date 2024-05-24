@@ -200,7 +200,7 @@ def get_data(time_period):
     query_api = client.query_api()
     query= f'from (bucket: "Estepa_Pabellon")\
     |> range(start: -{start_time})\
-    '
+    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'
 
     result = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query.strip())
     return result
@@ -254,7 +254,7 @@ query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> yield(name: "last")\
 '''
 to_drop = ['result', 'table', '_measurement']
-
+   
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
 if not isinstance(dffan, list):
     dffan = [dffan]
