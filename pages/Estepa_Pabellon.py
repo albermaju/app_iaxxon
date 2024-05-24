@@ -249,8 +249,8 @@ query_fan = f'''from(bucket: "Estepa_Pabellon")\
 
 query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> range(start: -15m)\
-    |> filter(fn: (r) => r["_field"] == "pump")\
-    |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
+    |> filter(fn: (r) => r._measurement == "prueba")\
+    |> filter(fn: (r) => r._field == "pump")
     |> yield(name: "last")\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
     
@@ -274,6 +274,7 @@ dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=que
 if not isinstance(dfpump, list):
     dfpump = [dfpump]
 dfpump = pd.concat(dfpump, ignore_index=True)
+st.dataframe(dfpump)
 estado_bomba = dfpump['pump'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
 
