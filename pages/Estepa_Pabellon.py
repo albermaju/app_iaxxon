@@ -244,12 +244,14 @@ query_fan = f'''from(bucket: "Estepa_Pabellon")\
     |> range(start: -15m)\
     |> filter(fn: (r) => r["_field"] == "fan")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
+    |> yield(name: "last")\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
 
 query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> range(start: -15m)\
     |> filter(fn: (r) => r["_field"] == "pump")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
+    |> yield(name: "last")\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
     
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
