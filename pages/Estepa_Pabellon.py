@@ -245,7 +245,7 @@ query_fan = f'''from(bucket: "Estepa_Pabellon")\
     |> filter(fn: (r) => r["_field"] == "fan")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")\
-    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
+'''
 
 query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> range(start: -15m)\
