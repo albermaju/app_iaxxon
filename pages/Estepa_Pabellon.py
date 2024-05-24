@@ -258,14 +258,14 @@ dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=quer
 if not isinstance(dffan, list):
     dffan = [dffan]
 dffan = pd.concat(dffan, ignore_index=True)
-
+to_drop = ['result', 'table', '_measurement']
+dffan.drop(to_drop, inplace=True, axis=1)
 
 df = get_data(time_period)
 if not isinstance(df, list):
     df = [df]
 
 df = pd.concat(df, ignore_index=True)
-to_drop = ['result', 'table', '_measurement']
 df.drop(to_drop, inplace=True, axis=1)
 
 estado_ventilador = dffan['fan'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
@@ -274,6 +274,7 @@ dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=que
 if not isinstance(dfpump, list):
     dfpump = [dfpump]
 dfpump = pd.concat(dfpump, ignore_index=True)
+dfpump.drop(to_drop, inplace=True, axis=1)
 st.dataframe(dfpump)
 estado_bomba = dfpump['pump'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
