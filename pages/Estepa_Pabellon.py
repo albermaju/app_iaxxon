@@ -255,18 +255,22 @@ query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
     
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
+
+df = get_data(time_period)
+to_drop = ['result', 'table', '_measurement']
+df.drop(to_drop, inplace=True, axis=1)
+st.dataframe(df)  # Same as st.write(df)
+
 estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
 dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
 estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
-df = get_data(time_period)
+
 
 df2 = get_kwh(time_period)
 
-to_drop = ['result', 'table', '_measurement']
-df.drop(to_drop, inplace=True, axis=1)
-st.dataframe(df)  # Same as st.write(df)
+
 st.dataframe(df2)  # Same as st.write(df)
 df['TCAP']=df['TCAP'].round(2)
 df['TDAC']=df['TDAC'].round(2)
