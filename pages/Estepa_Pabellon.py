@@ -255,11 +255,11 @@ query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
     
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
-##if not isinstance(dffan, list):
- ##   dffan = [dffan]
-##dffan = pd.concat(dffan, ignore_index=True)
+if not isinstance(dffan, list):
+    dffan = [dffan]
+dffan = pd.concat(dffan, ignore_index=True)
 to_drop = ['result', 'table', '_measurement']
-##dffan.drop(to_drop, inplace=True, axis=1)
+dffan.drop(to_drop, inplace=True, axis=1)
 
 df = get_data(time_period)
 if not isinstance(df, list):
@@ -277,6 +277,7 @@ dfpump = pd.concat(dfpump, ignore_index=True)
 dfpump.drop(to_drop, inplace=True, axis=1)
 st.dataframe(dfpump)
 estado_bomba = dfpump['pump'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
+
 
 df2 = get_kwh(time_period)
 
