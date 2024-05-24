@@ -255,6 +255,7 @@ query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
     
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
+dffan = pd.concat(dffan, ignore_index=True)
 
 df = get_data(time_period)
 combined_df = pd.concat(df, ignore_index=True)
