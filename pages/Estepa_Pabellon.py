@@ -259,10 +259,8 @@ dffan = pd.concat(dffan, ignore_index=True)
 
 df = get_data(time_period)
 df = pd.concat(df, ignore_index=True)
-st.dataframe(df)  # Same as st.write(df)
 to_drop = ['result', 'table', '_measurement']
 df.drop(to_drop, inplace=True, axis=1)
-st.dataframe(df)  # Same as st.write(df)
 
 estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
