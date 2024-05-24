@@ -269,14 +269,12 @@ df = pd.concat(df, ignore_index=True)
 df.drop(to_drop, inplace=True, axis=1)
 
 estado_ventilador = dffan['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
-st.dataframe(dffan)
 dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
 if not isinstance(dfpump, list):
     dfpump = [dfpump]
 dfpump = pd.concat(dfpump, ignore_index=True)
 dfpump.drop(to_drop, inplace=True, axis=1)
 
-st.dataframe(dfpump)
 estado_bomba = dfpump['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
 
