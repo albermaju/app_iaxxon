@@ -275,6 +275,8 @@ if not isinstance(dfpump, list):
     dfpump = [dfpump]
 dfpump = pd.concat(dfpump, ignore_index=True)
 dfpump.drop(to_drop, inplace=True, axis=1)
+# Eliminar las filas con valores nulos en la columna 'columna'
+dfpump = dfpump.dropna(subset=['pump'])
 st.dataframe(dfpump)
 estado_bomba = dfpump['pump'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
