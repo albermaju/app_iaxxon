@@ -252,18 +252,33 @@ query_pump = f'''from(bucket: "Estepa_Piscina_v3")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")'''
     
+to_drop = ['result', 'table', '_measurement']
+   
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
-estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
+if not isinstance(dffan, list):
+    dffan = [dffan]
+dffan = pd.concat(dffan, ignore_index=True)
 
-dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
-estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
-
+dffan.drop(to_drop, inplace=True, axis=1)
 
 df = get_data(time_period)
+if not isinstance(df, list):
+    df = [df]
+
+df = pd.concat(df, ignore_index=True)
+df.drop(to_drop, inplace=True, axis=1)
+
+dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
+if not isinstance(dfpump, list):
+    dfpump = [dfpump]
+dfpump = pd.concat(dfpump, ignore_index=True)
+dfpump.drop(to_drop, inplace=True, axis=1)
+
+estado_ventilador = dffan['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
+estado_bomba = dfpump['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
+
 df2 = get_kwh(time_period)
 
-to_drop = ['result', 'table', '_measurement', 'tag1', 'tag2']
-df.drop(to_drop, inplace=True, axis=1)
 df['TCAP']=df['TCAP'].round(2)
 df['TDAC']=df['TDAC'].round(2)
 df['TINT']=df['TINT'].round(2)

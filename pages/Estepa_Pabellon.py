@@ -253,12 +253,13 @@ query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> filter(fn: (r) => r._field == "pump")
     |> yield(name: "last")\
 '''
-    
+to_drop = ['result', 'table', '_measurement']
+   
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
 if not isinstance(dffan, list):
     dffan = [dffan]
 dffan = pd.concat(dffan, ignore_index=True)
-to_drop = ['result', 'table', '_measurement']
+
 dffan.drop(to_drop, inplace=True, axis=1)
 
 df = get_data(time_period)
