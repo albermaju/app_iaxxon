@@ -255,6 +255,8 @@ query_pump = f'''from(bucket: "Estepa_Pabellon")\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
     
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
+if not isinstance(dffan, list):
+    dffan = [dffan]
 dffan = pd.concat(dffan, ignore_index=True)
 
 
@@ -269,6 +271,8 @@ df.drop(to_drop, inplace=True, axis=1)
 estado_ventilador = dffan['fan'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 st.dataframe(dffan)
 dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
+if not isinstance(dfpump, list):
+    dfpump = [dfpump]
 dfpump = pd.concat(dfpump, ignore_index=True)
 estado_bomba = dfpump['pump'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
