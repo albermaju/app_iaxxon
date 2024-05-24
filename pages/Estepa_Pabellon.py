@@ -273,9 +273,7 @@ estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie
 
 
 df2 = get_kwh(time_period)
-###df2 = pd.concat(df2, ignore_index=True)
 
-st.dataframe(df2)  # Same as st.write(df)
 df['TCAP']=df['TCAP'].round(2)
 df['TDAC']=df['TDAC'].round(2)
 df['TINT']=df['TINT'].round(2)
