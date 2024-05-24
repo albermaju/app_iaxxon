@@ -258,11 +258,11 @@ dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=quer
 dffan = pd.concat(dffan, ignore_index=True)
 
 df = get_data(time_period)
-combined_df = pd.concat(df, ignore_index=True)
-st.dataframe(combined_df)  # Same as st.write(df)
+df = pd.concat(df, ignore_index=True)
+st.dataframe(df)  # Same as st.write(df)
 to_drop = ['result', 'table', '_measurement']
-combined_df.drop(to_drop, inplace=True, axis=1)
-st.dataframe(combined_df)  # Same as st.write(df)
+df.drop(to_drop, inplace=True, axis=1)
+st.dataframe(df)  # Same as st.write(df)
 
 estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
@@ -273,7 +273,7 @@ estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie
 
 
 df2 = get_kwh(time_period)
-
+df2 = pd.concat(df2, ignore_index=True)
 
 st.dataframe(df2)  # Same as st.write(df)
 df['TCAP']=df['TCAP'].round(2)
