@@ -267,7 +267,7 @@ estado_ventilador = dffan["_value"].iloc[-1]  # Tomamos el último valor de la s
 
 dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
 dfpump = pd.concat(dfpump, ignore_index=True)
-
+st.dataframe(dfpump)
 estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
 
