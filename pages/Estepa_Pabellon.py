@@ -262,34 +262,12 @@ estado_bomba = dfpump["_value"].iloc[-1]  # Tomamos el último valor de la serie
 
 df = get_data(time_period)
 
-# Encuentra los índices donde 'id' se reinicia
-transition_indices = df[df['_time'] == 1].index.tolist()
-
-# Split the dataframe at the identified transition indices
-dfs = []
-start_idx = 0
-
-for idx in transition_indices[1:]:  # Skip the first occurrence
-    dfs.append(df.iloc[start_idx:idx])
-    start_idx = idx
-
-# Add the last segment
-dfs.append(df.iloc[start_idx:])
-
-# Concatenar las partes ignorando índices
-df_final = pd.concat(dfs, ignore_index=True)
-
-
-
-
 df2 = get_kwh(time_period)
-st.dataframe(df)  # Same as st.write(df)
-####
-# st.dataframe(df2)  # Same as st.write(df)
-######
 
 to_drop = ['result', 'table', '_measurement']
 df.drop(to_drop, inplace=True, axis=1)
+st.dataframe(df)  # Same as st.write(df)
+st.dataframe(df2)  # Same as st.write(df)
 df['TCAP']=df['TCAP'].round(2)
 df['TDAC']=df['TDAC'].round(2)
 df['TINT']=df['TINT'].round(2)
