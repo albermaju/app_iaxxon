@@ -254,6 +254,8 @@ query_pump = f'''from(bucket: "Iaxxon_Aguilar_Pabellon_v2")\
     
 to_drop = ['result', 'table', '_measurement']
    
+to_drop = ['result', 'table', '_measurement']
+   
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
 if not isinstance(dffan, list):
     dffan = [dffan]
@@ -267,14 +269,15 @@ if not isinstance(df, list):
 
 df = pd.concat(df, ignore_index=True)
 df.drop(to_drop, inplace=True, axis=1)
+df.sort_values(by='_time', ascending=True, inplace=True)
 
+estado_ventilador = dffan['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
 if not isinstance(dfpump, list):
     dfpump = [dfpump]
 dfpump = pd.concat(dfpump, ignore_index=True)
 dfpump.drop(to_drop, inplace=True, axis=1)
 
-estado_ventilador = dffan['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 estado_bomba = dfpump['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
 df2 = get_kwh(time_period)
