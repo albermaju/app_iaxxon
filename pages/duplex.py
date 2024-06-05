@@ -218,7 +218,7 @@ df.sort_values(by='_time', ascending=True, inplace=True)
 df['TCAP']=df['TCAP'].round(2)
 df['TEXT']=df['TEXT'].round(2)
 df['TINT']=df['TINT'].round(2)
-df['TRET']=df2['TRET'].round(2)
+df['TRET']=df['TRET'].round(2)
 df.rename(columns = {'_time':'Tiempo'}, inplace = True) 
 
 #######################################
@@ -276,17 +276,17 @@ with st.container():
 with st.container():
     fig = px.line(df, x="Tiempo", y="TEXT",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Depósito Caliente')
+                  title='Temperatura Exterior')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
     fig = px.line(df, x="Tiempo", y="TINT",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Intercambiador')
+                  title='Temperatura Interior')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
     fig = px.line(df, x="Tiempo", y="TRET",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Depósito Agua Fría')
+                  title='Temperatura Retorno')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
