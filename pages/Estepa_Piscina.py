@@ -175,60 +175,58 @@ client = influxdb_client.InfluxDBClient(
 # CARGA DE DATOS
 #######################################
 
-def get_data(time_period):
+# Fecha de finalización (1 de julio de 2024 a las 00:00 UTC)
+end_time = datetime(2024, 7, 1, 0, 0, 0)
 
-    # Obtener la fecha actual
-    end_time = datetime.utcnow()
-
+# Función para calcular start_date en función del período seleccionado
+def calculate_start_date(time_period):
     if time_period == '1 hora':
-        start_time = '1h'
-    if time_period == '1 día':
-        start_time = '1d'
+        delta = timedelta(hours=1)
+    elif time_period == '1 día':
+        delta = timedelta(days=1)
     elif time_period == '2 días':
-        start_time = '2d'
+        delta = timedelta(days=2)
     elif time_period == '7 días':
-        start_time = '7d'
+        delta = timedelta(weeks=1)
     elif time_period == '1 mes':
-        start_time = '30d'
+        delta = timedelta(days=31)  # Aproximado a un mes
     elif time_period == '1 año':
-        start_time = '365d'
+        delta = timedelta(days=365)  # Aproximado a un año
+    else:
+        raise ValueError("Período de tiempo no soportado.")
 
-    # Formatear las fechas en el formato aceptado por InfluxDB
+    # Calcular el start_date restando el delta del end_time
+    start_time = end_time - delta
 
+    # Convertir las fechas a formato ISO 8601 para InfluxDB
+    start_time_str = start_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+    end_time_str = end_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # Construir la consulta   
+    return start_time_str, end_time_str
+
+# Función para obtener datos según el período de tiempo seleccionado
+def get_data(time_period):
+    # Obtener las fechas de inicio y fin en función del período seleccionado
+    start_time_str, end_time_str = calculate_start_date(time_period)
+
+    # Construir la consulta con el rango dinámico de fechas
     query_api = client.query_api()
-    query= f'from (bucket: "Estepa_Piscina_v3")\
-    |> range(start: -{start_time})\
-    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'
+    query = f'''from(bucket: "Estepa_Piscina_v3")\
+    |> range(start: {start_time_str}, stop: {end_time_str})\
+    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
 
     result = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query.strip())
     return result
 
+# Función para calcular el KWh en función del período de tiempo
 def get_kwh(time_period):
+    # Obtener las fechas de inicio y fin en función del período seleccionado
+    start_time_str, end_time_str = calculate_start_date(time_period)
 
-    # Obtener la fecha actual
-    end_time = datetime.utcnow()
-
-    if time_period == '1 hora':
-        start_time = '1h'
-    if time_period == '1 día':
-        start_time = '1d'
-    elif time_period == '2 días':
-        start_time = '2d'
-    elif time_period == '7 días':
-        start_time = '7d'
-    elif time_period == '1 mes':
-        start_time = '31d'
-    elif time_period == '1 año':
-        start_time = '1y'
-
-    # Formatear las fechas en el formato aceptado por InfluxDB
-    
-    # Construir la consulta   
+    # Construir la consulta con el rango dinámico de fechas
     query_api = client.query_api()
     query = f'''from(bucket: "Estepa_Piscina_v3")\
-    |> range(start: -{start_time})\
+    |> range(start: {start_time_str}, stop: {end_time_str})\
     |> filter(fn: (r) => r["_measurement"] == "prueba")\
     |> filter(fn: (r) => r["_field"] == "TINT" or r["_field"] == "pump" or r["_field"] == "TDAF")\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")\
@@ -239,6 +237,7 @@ def get_kwh(time_period):
     result = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query)
     return result
 
+# Ejecución de consultas de ventilador y bomba
 query_api = client.query_api()
 query_fan = f'''from(bucket: "Estepa_Piscina_v3")\
     |> range(start: -24h)\
@@ -251,16 +250,18 @@ query_pump = f'''from(bucket: "Estepa_Piscina_v3")\
     |> filter(fn: (r) => r["_field"] == "pump")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")'''
-    
+
 to_drop = ['result', 'table', '_measurement']
-   
+
+# Obtener los datos del ventilador
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
 if not isinstance(dffan, list):
     dffan = [dffan]
 dffan = pd.concat(dffan, ignore_index=True)
-
 dffan.drop(to_drop, inplace=True, axis=1)
 
+# Obtener los datos según el período seleccionado
+time_period = '7 días'  # Cambia esto a cualquier otro valor que quieras
 df = get_data(time_period)
 if not isinstance(df, list):
     df = [df]
@@ -269,15 +270,17 @@ df = pd.concat(df, ignore_index=True)
 df.drop(to_drop, inplace=True, axis=1)
 df.sort_values(by='_time', ascending=True, inplace=True)
 
-estado_ventilador = dffan['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
+# Obtener el estado del ventilador y bomba
+estado_ventilador = dffan['_value'].iloc[-1]  # Último valor de la serie temporal del ventilador
 dfpump = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_pump)
 if not isinstance(dfpump, list):
     dfpump = [dfpump]
 dfpump = pd.concat(dfpump, ignore_index=True)
 dfpump.drop(to_drop, inplace=True, axis=1)
 
-estado_bomba = dfpump['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
+estado_bomba = dfpump['_value'].iloc[-1]  # Último valor de la serie temporal de la bomba
 
+# Calcular KWh
 df2 = get_kwh(time_period)
 
 df['TCAP']=df['TCAP'].round(2)
