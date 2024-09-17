@@ -240,13 +240,13 @@ def get_kwh(time_period):
 # Ejecución de consultas de ventilador y bomba
 query_api = client.query_api()
 query_fan = f'''from(bucket: "Estepa_Piscina_v3")\
-    |> range(start: -24h)\
+    |> range(start: 2024-07-01T12:00:00Z, stop: 2024-07-01T13:00:00Z)\
     |> filter(fn: (r) => r["_field"] == "fan")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")'''
 
 query_pump = f'''from(bucket: "Estepa_Piscina_v3")\
-    |> range(start: -24h)\
+    |> range(start: 2024-07-01T12:00:00Z, stop: 2024-07-01T13:00:00Z)\
     |> filter(fn: (r) => r["_field"] == "pump")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
     |> yield(name: "last")'''
