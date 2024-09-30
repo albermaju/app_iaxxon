@@ -29,22 +29,22 @@ MenuButtons(get_roles())
 #######################################
 # API TIEMPO
 #######################################
-city="Estepa"
+city="Priego,ES"
 unit="Celsius"
 speed="Kilometre/hour"
 temp_unit=" °C"
 wind_unit=" km/h"
 
-api="ad580a816236d62b1dde3cc3ba900651"
-url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api}"
+api="f8b240ffa80eee036066e32f79b95124"
+url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&APPID={api}"
 response=requests.get(url)
 x=response.json()
-
+https://api.openweathermap.org/data/2.5/weather?q=Priego,ES&APPID=f8b240ffa80eee036066e32f79b95124
 try:
     lon=x["coord"]["lon"]
     lat=x["coord"]["lat"]
     ex="current,minutely,hourly"
-    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&lang=sp&appid={api}'
+    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&lang=sp&APPID={api}'
     res=requests.get(url2)
     y=res.json()
 
