@@ -39,6 +39,13 @@ api="f8b240ffa80eee036066e32f79b95124"
 url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&APPID={api}"
 response=requests.get(url)
 x=response.json()
+if "main" in x and "temp" in x["main"]:
+    if unit == "Celsius":
+        temp = str(round(x["main"]["temp"] - cel, 2))
+    else:
+        temp = str(round((((x["main"]["temp"] - cel) * 1.8) + 32), 2))
+else:
+    st.error("Error: No se encontró información de la temperatura en la respuesta.")
 
 try:
     if "coord" in x:
