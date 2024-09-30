@@ -41,75 +41,27 @@ response=requests.get(url)
 x=response.json()
 
 try:
-    lon=x["coord"]["lon"]
-    lat=x["coord"]["lat"]
-    ex="current,minutely,hourly"
-    url2=f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={ex}&lang=sp&APPID={api}'
-    res=requests.get(url2)
-    y=res.json()
-
-    maxtemp=[]
-    mintemp=[]
-    pres=[]
-    humd=[]
-    wspeed=[]
-    desc=[]
-    cloud=[]
-    rain=[]
-    dates=[]
-    sunrise=[]
-    sunset=[]
-    cel=273.15
-            
-    for item in y["daily"]:
-        if unit=="Celsius":
-            maxtemp.append(round(item["temp"]["max"]-cel,2))
-            mintemp.append(round(item["temp"]["min"]-cel,2))
-        else:
-            maxtemp.append(round((((item["temp"]["max"]-cel)*1.8)+32),2))
-            mintemp.append(round((((item["temp"]["min"]-cel)*1.8)+32),2))
-
-        if wind_unit=="m/s":
-            wspeed.append(str(round(item["wind_speed"],1))+wind_unit)
-        else:
-            wspeed.append(str(round(item["wind_speed"]*3.6,1))+wind_unit)
-
-        pres.append(item["pressure"])
-        humd.append(str(item["humidity"])+' %')
-                
-        cloud.append(str(item["clouds"])+' %')
-        rain.append(str(int(item["pop"]*100))+'%')
-
-        desc.append(item["weather"][0]["description"].title())
-
-    def bargraph():
-        fig=go.Figure(data=
-            [
-            go.Bar(name="Maximum",x=dates,y=maxtemp,marker_color='crimson'),
-            go.Bar(name="Minimum",x=dates,y=mintemp,marker_color='navy')
-            ])
-        fig.update_layout(xaxis_title="Dates",yaxis_title="Temperature",barmode='group',margin=dict(l=70, r=10, t=80, b=80),font=dict(color="white"))
-        st.plotly_chart(fig)
-            
-    def linegraph():
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(x=dates, y=mintemp, name='Minimum '))
-        fig.add_trace(go.Scatter(x=dates, y=maxtemp, name='Maximimum ',marker_color='crimson'))
-        fig.update_layout(xaxis_title="Dates",yaxis_title="Temperature",font=dict(color="white"))
-        st.plotly_chart(fig)
-                
-    icon=x["weather"][0]["icon"]
-    current_weather=x["weather"][0]["description"].title()
-            
-    if unit=="Celsius":
-        temp=str(round(x["main"]["temp"]-cel,2))
+    if "coord" in x:
+        lon = x["coord"]["lon"]
+        lat = x["coord"]["lat"]
     else:
-        temp=str(round((((x["main"]["temp"]-cel)*1.8)+32),2))
+        st.error("No se encontraron las coordenadas.")
 
-    url_png = f'http://openweathermap.org/img/w/{icon}.png'
+    if "main" in x:
+        if unit == "Celsius":
+            temp = str(round(x["main"]["temp"] - cel, 2))
+        else:
+            temp = str(round((((x["main"]["temp"] - cel) * 1.8) + 32), 2))
+    else:
+        st.error("No se encontró la información del clima.")
 
-except KeyError:
-    st.error("¡Ciudad no encontrada!")
+    icon = x["weather"][0]["icon"] if "weather" in x and len(x["weather"]) > 0 else None
+    current_weather = x["weather"][0]["description"].title() if "weather" in x and len(x["weather"]) > 0 else "No disponible"
+
+except KeyError as e:
+    st.error(f"Error en los datos recibidos: {str(e)}")
+         
+
 
 #######################################
 # CONFIGURACIÓN DE PÁGINA
