@@ -35,7 +35,7 @@ speed="Kilometre/hour"
 temp_unit=" °C"
 wind_unit=" km/h"
 
-api="f8b240ffa80eee036066e32f79b95124"
+api="ad580a816236d62b1dde3cc3ba900651"
 url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api}"
 response=requests.get(url)
 x=response.json()
