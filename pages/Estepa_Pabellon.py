@@ -154,7 +154,7 @@ with col1:
 
 with col2:
     st.subheader("Pabellón de Estepa")
-    st.metric(f"Clima en {city}",temp+temp_unit)
+    st.metric(f"Clima en {city}", f"{temp}{temp_unit}")
 
 with col3:
     st.subheader("Estado Actual")
