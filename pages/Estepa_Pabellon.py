@@ -29,44 +29,32 @@ MenuButtons(get_roles())
 #######################################
 # API TIEMPO
 #######################################
-city="Estepa,ES"
-unit="Celsius"
-speed="Kilometre/hour"
-temp_unit=" °C"
-wind_unit=" km/h"
 
-api="f8b240ffa80eee036066e32f79b95124"
-url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&APPID={api}"
-response=requests.get(url)
-x=response.json()
-if "main" in x and "temp" in x["main"]:
-    if unit == "Celsius":
-        temp = str(round(x["main"]["temp"] - cel, 2))
-    else:
-        temp = str(round((((x["main"]["temp"] - cel) * 1.8) + 32), 2))
+# Variables
+city = "Estepa,ES"
+unit = "Celsius"
+temp_unit = "°C"
+api = "f8b240ffa80eee036066e32f79b95124"
+url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&APPID={api}"
+
+# Solicitar datos del clima
+response = requests.get(url)
+x = response.json()
+
+# Verificar si la solicitud fue exitosa
+if response.status_code == 200:
+    try:
+        # Extraer temperatura y convertir a grados Celsius
+        cel = 273.15
+        temp = round(x["main"]["temp"] - cel, 2)  # Convertir de Kelvin a Celsius
+
+        # Obtener el ícono del clima
+        icon = x["weather"][0]["icon"]
+        url_png = f'http://openweathermap.org/img/w/{icon}.png'
+    except KeyError as e:
+        st.error(f"Error en los datos recibidos: {str(e)}")
 else:
-    st.error("Error: No se encontró información de la temperatura en la respuesta.")
-
-try:
-    if "coord" in x:
-        lon = x["coord"]["lon"]
-        lat = x["coord"]["lat"]
-    else:
-        st.error("No se encontraron las coordenadas.")
-
-    if "main" in x:
-        if unit == "Celsius":
-            temp = str(round(x["main"]["temp"] - cel, 2))
-        else:
-            temp = str(round((((x["main"]["temp"] - cel) * 1.8) + 32), 2))
-    else:
-        st.error("No se encontró la información del clima.")
-
-    icon = x["weather"][0]["icon"] if "weather" in x and len(x["weather"]) > 0 else None
-    current_weather = x["weather"][0]["description"].title() if "weather" in x and len(x["weather"]) > 0 else "No disponible"
-
-except KeyError as e:
-    st.error(f"Error en los datos recibidos: {str(e)}")
+    st.error(f"Error al obtener los datos del clima: {x.get('message', 'Respuesta inesperada')}")
          
 
 
@@ -112,12 +100,12 @@ with col1:
     time_period = st.selectbox('Selecciona el período de tiempo:', options)
 
 with col2:
-    st.subheader("Pabellón de Estepa")
-    st.metric(f"Clima en {city}", f"{temp}{temp_unit}")
+    st.subheader("Piscina Estepa")
+    st.metric(f"Clima en {city}", f"{temp} {temp_unit}")  # Mostrar temperatura con unidad
 
 with col3:
     st.subheader("Estado Actual")
-    st.image(url_png, width=80)
+    st.image(url_png, width=80)  # Mostrar ícono del clima
     st.subheader(" ")
         
 #######################################
