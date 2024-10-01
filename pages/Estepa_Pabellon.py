@@ -46,7 +46,7 @@ if response.status_code == 200:
     try:
         # Extraer temperatura y convertir a grados Celsius
         cel = 273.15
-        temp = round(x["main"]["temp"] - cel, 2)  # Convertir de Kelvin a Celsius
+        temp = round(x["main"]["temp"], 2)  # Convertir de Kelvin a Celsius
 
         # Obtener el ícono del clima
         icon = x["weather"][0]["icon"]
