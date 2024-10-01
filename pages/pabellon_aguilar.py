@@ -100,7 +100,7 @@ with col1:
     time_period = st.selectbox('Selecciona el período de tiempo:', options)
 
 with col2:
-    st.subheader("Piscina Estepa")
+    st.subheader("Pabellón Aguilar de la Frta.")
     st.metric(f"Clima en {city}", f"{temp} {temp_unit}")  # Mostrar temperatura con unidad
 
 with col3:
