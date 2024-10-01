@@ -35,7 +35,7 @@ city = "Estepa,ES"
 unit = "Celsius"
 temp_unit = "°C"
 api = "f8b240ffa80eee036066e32f79b95124"
-url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&APPID={api}"
+url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&APPID={api}&units=metric"
 
 # Solicitar datos del clima
 response = requests.get(url)
