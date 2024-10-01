@@ -107,7 +107,8 @@ with col3:
     st.subheader("Estado Actual")
     st.image(url_png, width=80)  # Mostrar ícono del clima
     st.subheader(" ")
-        
+
+st.subheader("Sistema de ACS (1 bat. de 10) y Deshumectación (4 bat. de 6)")
 #######################################
 # INFLUXDB
 #######################################
