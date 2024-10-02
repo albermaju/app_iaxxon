@@ -33,7 +33,7 @@ def Page9Nav():
     st.sidebar.page_link("pages/huetorvega_pabellon.py", label="Pabellón Huétor Vega")
 
 def Page10Nav():
-    st.sidebar.page_link("pages/toyota-hispaljarafe.py", label="Toyota Hispaljarafe")
+    st.sidebar.page_link("pages/Toyota-Hispaljarafe.py", label="Toyota Hispaljarafe")
 
 
 
