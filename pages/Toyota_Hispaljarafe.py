@@ -311,19 +311,19 @@ with st.container():
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
-    fig = px.line(df, x="Tiempo", y="TDAC",
-                  hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Depósito Caliente')
-    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
-
-with st.container():
     fig = px.line(df, x="Tiempo", y="TINT",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Intercambiador')
+                  title='Temperatura Interior')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
-    fig = px.line(df, x="Tiempo", y="TDAF",
+    fig = px.line(df, x="Tiempo", y="TEXP",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Depósito Agua Fría')
+                  title='Temperatura Expulsion')
+    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
+
+with st.container():
+    fig = px.line(df, x="Tiempo", y="TEXT",
+                  hover_data={"Tiempo": "|%H:%M,  %d/%m"},
+                  title='Temperatura Exterior')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
