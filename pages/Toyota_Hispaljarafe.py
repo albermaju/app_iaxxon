@@ -253,19 +253,9 @@ with col2:
     st.metric(label="Temperatura Exterior", value=f"{df.TAC1.iloc[-1]} °C")
 
 with col3:
-    st.markdown("")
-    tog.st_toggle_switch(
-        label="Bomba ",
-        key="switch_1",
-        default_value= estado_bomba,
-        label_after=True,
-        inactive_color="#D3D3D3",
-        active_color="#D3D3D3", 
-        track_color="#008f39", 
-    )
     st.markdown("") 
     tog.st_toggle_switch(
-        label="Ventilador ",
+        label="Calefacción",
         key="switch_2",
         default_value= estado_ventilador,
         label_after=True,
