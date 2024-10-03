@@ -317,13 +317,13 @@ with st.container():
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
-    fig = px.line(df, x="Tiempo", y="TEXP",
+    fig = px.line(df, x="Tiempo", y="TAC2",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Expulsion')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
-    fig = px.line(df, x="Tiempo", y="TEXT",
+    fig = px.line(df, x="Tiempo", y="TAC1",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
                   title='Temperatura Exterior')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
