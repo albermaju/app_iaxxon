@@ -25,7 +25,7 @@ def MenuButtons(user_roles=None):
                 "Pabellón Aguilar de la Ftra.": "pages/pabellon_aguilar.py",
                 "Pabellón Huétor Vega": "pages/huetorvega_pabellon.py",
                 "Toyota Hispaljarafe": "pages/Toyota_Hispaljarafe.py",
-                "Piscina Pedrera": "pages/piscina_pedrera2.py"
+                "Piscina Pedrera": "pages/piscina_pedrera.py"
             },
             'estepa': {
                 "Pabellon Estepa": "pages/Estepa_Pabellon.py",

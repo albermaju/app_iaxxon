@@ -100,15 +100,15 @@ with col1:
     time_period = st.selectbox('Selecciona el período de tiempo:', options)
 
 with col2:
-    st.subheader("Toyota Hispaljarafe")
+    st.subheader("Piscina Priego")
     st.metric(f"Clima en {city}", f"{temp} {temp_unit}")  # Mostrar temperatura con unidad
 
 with col3:
     st.subheader("Estado Actual")
     st.image(url_png, width=80)  # Mostrar ícono del clima
     st.subheader(" ")
-
-st.subheader("Sistema de Calefacción (4 bat. de 6)")
+        
+        
 #######################################
 # INFLUXDB
 #######################################
@@ -146,7 +146,7 @@ def get_data(time_period):
 
     # Construir la consulta   
     query_api = client.query_api()
-    query= f'from (bucket: "toyota-hispaljarafe")\
+    query= f'from (bucket: "Estepa_Piscina_v3")\
     |> range(start: -{start_time})\
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'
 
@@ -175,7 +175,7 @@ def get_kwh(time_period):
     
     # Construir la consulta   
     query_api = client.query_api()
-    query = f'''from(bucket: "toyota-hispaljarafe")\
+    query = f'''from(bucket: "Estepa_Piscina_v3")\
     |> range(start: -{start_time})\
     |> filter(fn: (r) => r["_measurement"] == "prueba")\
     |> filter(fn: (r) => r["_field"] == "TINT" or r["_field"] == "pump" or r["_field"] == "TDAF")\
@@ -188,19 +188,18 @@ def get_kwh(time_period):
     return result
 
 query_api = client.query_api()
-query_fan = f'''from(bucket: "toyota-hispaljarafe")\
-    |> range(start: -15m)\
-    |> filter(fn: (r) => r["_field"] == "heat")\
+query_fan = f'''from(bucket: "Estepa_Piscina_v3")\
+    |> range(start: -24h)\
+    |> filter(fn: (r) => r["_field"] == "fan")\
     |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
-    |> yield(name: "last")\
-'''
+    |> yield(name: "last")'''
 
-query_pump = f'''from(bucket: "toyota-hispaljarafe")\
-    |> range(start: -15m)\
-    |> filter(fn: (r) => r._measurement == "prueba")\
-    |> filter(fn: (r) => r._field == "pump")
-    |> yield(name: "last")\
-'''
+query_pump = f'''from(bucket: "Estepa_Piscina_v3")\
+    |> range(start: -24h)\
+    |> filter(fn: (r) => r["_field"] == "pump")\
+    |> aggregateWindow(every: 1m, fn: last, createEmpty: false)\
+    |> yield(name: "last")'''
+    
 to_drop = ['result', 'table', '_measurement']
    
 dffan = query_api.query_data_frame(org=st.secrets.db_credentials.org, query=query_fan)
@@ -227,11 +226,10 @@ dfpump.drop(to_drop, inplace=True, axis=1)
 
 estado_bomba = dfpump['_value'].iloc[-1]  # Tomamos el último valor de la serie de tiempo
 
-
 df2 = get_kwh(time_period)
 
 df['TCAP']=df['TCAP'].round(2)
-df['TAC1']=df['TAC1'].round(2)
+df['TDAC']=df['TDAC'].round(2)
 df['TINT']=df['TINT'].round(2)
 df2['_value']=df2['_value'].round(2)
 df.rename(columns = {'_time':'Tiempo'}, inplace = True) 
@@ -249,13 +247,23 @@ with col1:
     st.metric(label="Energía Producida", value=f"{df2._value.iloc[-1]} kWh")
 
 with col2:
-    st.metric(label="Temperatura Interior", value=f"{df.TINT.iloc[-1]} °C")
-    st.metric(label="Temperatura Exterior", value=f"{df.TAC1.iloc[-1]} °C")
+    st.metric(label="Temperatura Intercambiador", value=f"{df.TINT.iloc[-1]} °C")
+    st.metric(label="Temperatura Depósito", value=f"{df.TDAC.iloc[-1]} °C")
 
 with col3:
+    st.markdown("")
+    tog.st_toggle_switch(
+        label="Bomba ",
+        key="switch_1",
+        default_value= estado_bomba,
+        label_after=True,
+        inactive_color="#D3D3D3",
+        active_color="#D3D3D3", 
+        track_color="#008f39", 
+    )
     st.markdown("") 
     tog.st_toggle_switch(
-        label="Calefacción",
+        label="Ventilador ",
         key="switch_2",
         default_value= estado_ventilador,
         label_after=True,
@@ -301,19 +309,19 @@ with st.container():
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
+    fig = px.line(df, x="Tiempo", y="TDAC",
+                  hover_data={"Tiempo": "|%H:%M,  %d/%m"},
+                  title='Temperatura Depósito Caliente')
+    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
+
+with st.container():
     fig = px.line(df, x="Tiempo", y="TINT",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Interior')
+                  title='Temperatura Intercambiador')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
 
 with st.container():
-    fig = px.line(df, x="Tiempo", y="TAC2",
+    fig = px.line(df, x="Tiempo", y="TDAF",
                   hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Expulsion')
-    st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
-
-with st.container():
-    fig = px.line(df, x="Tiempo", y="TAC1",
-                  hover_data={"Tiempo": "|%H:%M,  %d/%m"},
-                  title='Temperatura Exterior')
+                  title='Temperatura Depósito Agua Fría')
     st.plotly_chart(fig, use_container_width=True,theme="streamlit", config=config)
