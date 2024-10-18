@@ -39,8 +39,6 @@ def Page11Nav():
     st.sidebar.page_link("pages/Piscina_Pedrera.py", label="Piscina Pedrera")
 
 
-
-
 def MenuButtons(user_roles=None):
     if user_roles is None:
         user_roles = {}
