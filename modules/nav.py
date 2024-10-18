@@ -35,6 +35,9 @@ def Page9Nav():
 def Page10Nav():
     st.sidebar.page_link("pages/Toyota_Hispaljarafe.py", label="Toyota Hispaljarafe")
 
+def Page11Nav():
+    st.sidebar.page_link("pages/Piscina_Pedrera.py", label="Piscina Pedrera")
+
 
 
 
@@ -75,6 +78,7 @@ def MenuButtons(user_roles=None):
             Page8Nav()
             Page9Nav()
             Page10Nav()
+            Page11Nav()
         elif ss.username in estepa:
             Page1Nav()
             Page2Nav()
