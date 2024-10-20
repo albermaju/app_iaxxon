@@ -19,6 +19,7 @@ def MenuButtons(user_roles=None):
                 "Piscina Estepa": "pages/Estepa_Piscina.py",
                 "Colegio Do Brasil": "pages/colegiodobrasil.py",
                 "Campo de Fútbol Estepa": "pages/campofutbol_estepa.py",
+                "Bodegas Habla": "pages/bodegashabla.py",
                 "Duplex": "pages/duplex.py",
                 "Piscina Priego de Córdoba": "pages/piscina_priego.py",
                 "Pabellón Aguilar de la Ftra.": "pages/pabellon_aguilar.py",
