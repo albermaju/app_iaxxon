@@ -1,6 +1,9 @@
 import streamlit as st
 from streamlit import session_state as ss
 
+# Importar los diferentes módulos de página
+from pages import Estepa_Pabellon, Estepa_Piscina, colegiodobrasil, bodegashabla, campofutbol_estepa, duplex, huetorvega_pabellon, pabellon_aguilar, piscina_pedrera, piscina_priego, Toyota_Hispaljarafe
+
 def MenuButtons(user_roles=None):
     if user_roles is None:
         user_roles = {}
@@ -9,29 +12,23 @@ def MenuButtons(user_roles=None):
         ss.authentication_status = False
 
     # Siempre muestra la página de inicio
-    pages = {"Iaxxon Energía": "Centro_de_Control_Iaxxon_Energía.py"}
+    pages = {"Iaxxon Energía": "Centro_de_Control_Iaxxon_Energía"}
 
     if ss["authentication_status"]:
         # Define los roles y las páginas que pueden acceder
         role_pages = {
             'admin': {
-                "Pabellon Estepa": "pages/Estepa_Pabellon.py",
-                "Piscina Estepa": "pages/Estepa_Piscina.py",
-                "Colegio Do Brasil": "pages/colegiodobrasil.py",
-                "Campo de Fútbol Estepa": "pages/campofutbol_estepa.py",
-                "Bodegas Habla": "pages/bodegashabla.py",
-                "Duplex": "pages/duplex.py",
-                "Piscina Priego de Córdoba": "pages/piscina_priego.py",
-                "Pabellón Aguilar de la Ftra.": "pages/pabellon_aguilar.py",
-                "Pabellón Huétor Vega": "pages/huetorvega_pabellon.py",
-                "Toyota Hispaljarafe": "pages/Toyota_Hispaljarafe.py",
-                "Piscina Pedrera": "pages/piscina_pedrera.py"
+                "Pabellon Estepa": Estepa_Pabellon.show_page,
+                "Piscina Estepa": Estepa_Piscina.show_page,
+                "Colegio Do Brasil": colegiodobrasil.show_page,
+                "Piscina Pedrera": piscina_pedrera.show_page,
+                "Toyota Hispaljarafe": Toyota_Hispaljarafe.show_page
             },
             'estepa': {
-                "Pabellon Estepa": "pages/Estepa_Pabellon.py",
-                "Piscina Estepa": "pages/Estepa_Piscina.py",
-                "Campo de Fútbol Estepa": "pages/campofutbol_estepa.py"
-            },
+                "Pabellon Estepa": Estepa_Pabellon.show_page,
+                "Piscina Estepa": Estepa_Piscina.show_page,
+                "Campo de Fútbol Estepa": Estepa_CampoFutbol.show_page
+            }
             # Agrega otros roles y sus páginas correspondientes aquí
         }
 
@@ -44,10 +41,8 @@ def MenuButtons(user_roles=None):
 
     # Crear el menú de navegación en la barra lateral
     selection = st.sidebar.selectbox("Seleccione una página", list(pages.keys()))
-    page = pages[selection]
+    selected_page = pages[selection]
 
-    # Ejecutar el script de la página seleccionada
-    with open(page) as f:
-        code = compile(f.read(), page, 'exec')
-        exec(code, globals())
+    # Ejecutar la página seleccionada
+    selected_page()  # Cada página ahora es una función
        
