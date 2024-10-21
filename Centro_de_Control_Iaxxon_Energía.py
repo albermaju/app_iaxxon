@@ -3,7 +3,6 @@ from streamlit import session_state as ss
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
-from modules.nav import MenuButtons
 
 st.set_page_config(page_title="Centro de Control Iaxxon Energía", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide", initial_sidebar_state= "auto")
 
