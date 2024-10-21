@@ -3,6 +3,7 @@ from streamlit import session_state as ss
 import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
+from pages import Estepa_Pabellon, Estepa_Piscina, colegiodobrasil, bodegashabla, campofutbol_estepa, duplex, huetorvega_pabellon, pabellon_aguilar, piscina_pedrera, piscina_priego, Toyota_Hispaljarafe
 
 st.set_page_config(page_title="Centro de Control Iaxxon Energía", page_icon="https://i.imgur.com/JEX19oy.png", layout="wide", initial_sidebar_state= "auto")
 
@@ -92,4 +93,44 @@ with open('config.yaml', 'w') as file:
     yaml.dump(config, file, default_flow_style=False)      
 
 # Call this late because we show the page navigator depending on who logged in.
-MenuButtons(get_roles())
+# MenuButtons(get_roles())
+if user_roles is None:
+        user_roles = {}
+
+    if 'authentication_status' not in ss:
+        ss.authentication_status = False
+
+    # Siempre muestra la página de inicio
+    pages = {"Iaxxon Energía": Iaxxon_Energia_show_page}
+
+    if ss["authentication_status"]:
+        # Define los roles y las páginas que pueden acceder
+        role_pages = {
+            'admin': {
+                "Pabellon Estepa": Estepa_Pabellon.show_page,
+                "Piscina Estepa": Estepa_Piscina.show_page,
+                "Colegio Do Brasil": colegiodobrasil.show_page,
+                "Piscina Pedrera": piscina_pedrera.show_page,
+                "Toyota Hispaljarafe": Toyota_Hispaljarafe.show_page
+            },
+            'estepa': {
+                "Pabellon Estepa": Estepa_Pabellon.show_page,
+                "Piscina Estepa": Estepa_Piscina.show_page,
+                "Campo de Fútbol Estepa": Estepa_CampoFutbol.show_page
+            }
+            # Agrega otros roles y sus páginas correspondientes aquí
+        }
+
+        # Obtener el rol del usuario actual
+        user_role = user_roles.get(ss.username)
+
+        # Agregar páginas según el rol del usuario
+        if user_role in role_pages:
+            pages.update(role_pages[user_role])
+
+    # Crear el menú de navegación en la barra lateral
+    selection = st.sidebar.selectbox("Seleccione una página", list(pages.keys()))
+    selected_page = pages[selection]
+
+    # Ejecutar la página seleccionada
+    selected_page()  # Cada página ahora es una función
