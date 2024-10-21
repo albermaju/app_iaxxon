@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit import session_state as ss
-from pages.Centro_de_Control import show_page as Iaxxon_Energia_show_page
+from Centro_de_Control_Iaxxon_Energía import show_page as Iaxxon_Energia_show_page
 
 # Importar los diferentes módulos de página
 from pages import Estepa_Pabellon, Estepa_Piscina, colegiodobrasil, bodegashabla, campofutbol_estepa, duplex, huetorvega_pabellon, pabellon_aguilar, piscina_pedrera, piscina_priego, Toyota_Hispaljarafe
