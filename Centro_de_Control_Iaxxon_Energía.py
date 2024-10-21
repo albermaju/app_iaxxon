@@ -93,7 +93,7 @@ with open('config.yaml', 'w') as file:
     yaml.dump(config, file, default_flow_style=False)      
 
 # Call this late because we show the page navigator depending on who logged in.
-# MenuButtons(get_roles())
+
 if user_roles is None:
         user_roles = {}
 
